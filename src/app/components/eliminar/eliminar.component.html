@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <h1 class="text-center">Administración de Vivienda - Eliminar</h1>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Id</th>
+        <th>Título</th>
+        <th>Tipo Propiedad</th>
+        <th>Descripción</th>
+        <th>Dirección</th>
+        <th>Ciudad</th>
+        <th>Precio</th>
+        <th>Habitaciones</th>
+        <th>Baños</th>
+        <th>Superficie</th>
+        <th>Borrar</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (prop of propiedades; track prop.id) {
+        <tr>
+          <td>{{ prop.id }}</td>
+          <td>{{ prop.titulo }}</td>
+          <td>{{ prop.tipo_propiedad }}</td>
+          <td>{{ prop.descripcion }}</td>
+          <td>{{ prop.direccion }}</td>
+          <td>{{ prop.ciudad }}</td>
+          <td>{{ prop.precio }}</td>
+          <td>{{ prop.habitaciones }}</td>
+          <td>{{ prop.banos }}</td>
+          <td>{{ prop.superficie }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteModal"
+              (click)="articuloAEliminar(prop)"
+            >
+              Borrar
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Confirmación</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>¿Estás seguro que deseas eliminar el artículo?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="confirmarBaja()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

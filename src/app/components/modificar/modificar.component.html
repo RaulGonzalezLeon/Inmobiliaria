@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h1 class="text-center">Administración de Artículos - Modificar</h1>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Id</th>
+        <th>Título</th>
+        <th>Tipo Propiedad</th>
+        <th>Descripción</th>
+        <th>Dirección</th>
+        <th>Ciudad</th>
+        <th>Precio</th>
+        <th>Habitaciones</th>
+        <th>Baños</th>
+        <th>Superficie</th>
+        <th>Seleccionar</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (prop of propiedades; track prop.id) {
+        <tr>
+          <td>{{ prop.id }}</td>
+          <td>{{ prop.titulo }}</td>
+          <td>{{ prop.tipo_propiedad }}</td>
+          <td>{{ prop.descripcion }}</td>
+          <td>{{ prop.direccion }}</td>
+          <td>{{ prop.ciudad }}</td>
+          <td>{{ prop.precio }}</td>
+          <td>{{ prop.habitaciones }}</td>
+          <td>{{ prop.banos }}</td>
+          <td>{{ prop.superficie }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="seleccionar(prop)">Seleccionar</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="card p-3 mt-4">
+    <h5 class="card-title">Modificar Artículo</h5>
+    <div class="mb-3">
+      <label class="form-label">Precio:</label>
+      <input type="number" class="form-control" [(ngModel)]="prop.precio" />
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-warning" (click)="modificacion()">Modificar</button>
+    </div>
+  </div>
+</div>

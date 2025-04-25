@@ -1,0 +1,16 @@
+footer {
+    background-color: #fffaf0; /* Fondo beige clarito */
+    color: #6B4423;
+    text-align: center;
+    padding: 0.4em 0;         /* Ligeramente más alto */
+    font-size: 0.9rem;        /* Fuente más grande */
+    font-weight: bold;        /* Texto en negrita */
+    position: fixed;          /* Fijo en la ventana */
+    bottom: 0;                /* Posicionado en la parte inferior */
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+  
+  

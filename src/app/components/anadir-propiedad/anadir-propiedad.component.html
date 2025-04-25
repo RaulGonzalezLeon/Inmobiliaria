@@ -1,0 +1,175 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Añadir Nueva Vivienda</h2>
+  <form novalidate class="needs-validation" (ngSubmit)="onSubmit($event)">
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título</label>
+      <input
+        type="text"
+        name="titulo"
+        [(ngModel)]="propiedad.titulo"
+        id="titulo"
+        class="form-control"
+        placeholder="Escriba el título"
+        required
+      />
+      <div class="invalid-feedback">
+        <b>El título es obligatorio</b>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="tipo" class="form-label">Tipo de Propiedad</label>
+      <select
+        name="tipo"
+        [(ngModel)]="propiedad.tipo_propiedad"
+        id="tipo"
+        class="form-select"
+        required
+      >
+        <option value="">Seleccione un tipo</option>
+        <option value="Casa">Casa</option>
+        <option value="Departamento">Departamento</option>
+        <option value="Oficina">Oficina</option>
+      </select>
+      <div class="invalid-feedback">
+        <b>El tipo de propiedad es obligatorio</b>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea
+        name="descripcion"
+        [(ngModel)]="propiedad.descripcion"
+        id="descripcion"
+        class="form-control"
+        placeholder="Ingrese una descripción"
+        required
+      ></textarea>
+      <div class="invalid-feedback">
+        <b>La descripción es obligatoria</b>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="direccion" class="form-label">Dirección</label>
+      <input
+        type="text"
+        name="direccion"
+        [(ngModel)]="propiedad.direccion"
+        id="direccion"
+        class="form-control"
+        placeholder="Ingrese la dirección"
+        required
+      />
+      <div class="invalid-feedback">
+        <b>La dirección es obligatoria</b>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="ciudad" class="form-label">Ciudad</label>
+      <input
+        type="text"
+        name="ciudad"
+        [(ngModel)]="propiedad.ciudad"
+        id="ciudad"
+        class="form-control"
+        placeholder="Ingrese la ciudad"
+        required
+      />
+      <div class="invalid-feedback">
+        <b>La ciudad es obligatoria</b>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="precio" class="form-label">Precio</label>
+      <input
+        type="number"
+        name="precio"
+        [(ngModel)]="propiedad.precio"
+        id="precio"
+        class="form-control"
+        placeholder="Escriba el precio"
+        min="1"
+        required
+      />
+      <div class="invalid-feedback">
+        <b>El precio es obligatorio y debe ser mayor a 0</b>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="habitaciones" class="form-label">Habitaciones</label>
+      <input
+        type="number"
+        name="habitaciones"
+        [(ngModel)]="propiedad.habitaciones"
+        id="habitaciones"
+        class="form-control"
+        placeholder="Número de habitaciones"
+        min="1"
+        required
+      />
+      <div class="invalid-feedback">
+        <b>Debe indicar al menos una habitación</b>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="banos" class="form-label">Baños</label>
+      <input
+        type="number"
+        name="banos"
+        [(ngModel)]="propiedad.banos"
+        id="banos"
+        class="form-control"
+        placeholder="Número de baños"
+        min="1"
+        required
+      />
+      <div class="invalid-feedback">
+        <b>Debe indicar al menos un baño</b>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="superficie" class="form-label">Superficie (m²)</label>
+      <input
+        type="number"
+        name="superficie"
+        [(ngModel)]="propiedad.superficie"
+        id="superficie"
+        class="form-control"
+        placeholder="Superficie en metros cuadrados"
+        min="1"
+        required
+      />
+      <div class="invalid-feedback">
+        <b>Debe indicar la superficie</b>
+      </div>
+    </div>
+
+    <!-- Campo para la imagen -->
+    <div class="mb-3">
+      <label for="imagen" class="form-label">Imagen</label>
+      <input
+        type="file"
+        accept="image/*"
+        id="imagen"
+        class="form-control"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">
+      Guardar
+    </button>
+  </form>
+
+  <div *ngIf="mostrarBanner" class="alert alert-success d-flex align-items-center" role="alert">
+    <span class="material-symbols-outlined me-2">check_circle</span>
+    <div>Se ha guardado la propiedad</div>
+  </div>
+</div>

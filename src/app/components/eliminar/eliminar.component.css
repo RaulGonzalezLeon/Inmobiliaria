@@ -1,0 +1,48 @@
+/* Estilos personalizados para la tabla */
+.text-center {
+  text-align: center;         /* Centra el contenido */
+  color: #6B4423;             /* Color de texto en marrón */
+  font-size: 40px;         /* Tamaño de fuente moderado */
+  margin: 0 auto;             /* Centra el bloque en su contenedor */
+  padding: 0.5rem 1rem;       /* Espaciado interno */
+  line-height: 1.4;           /* Altura de línea para mejorar la legibilidad */
+  font-weight: 800;
+}
+.table {
+    background-color: #fffaf0; /* Fondo beige clarito */
+    color: #6B4423;           /* Color de texto */
+    border: 1px solid #e6d8c3;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #e6d8c3;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Para el encabezado de la tabla */
+  .table thead {
+    background-color: #fffaf0; /* Aplicamos el mismo fondo para un look uniforme */
+    color: #6B4423;
+  }
+  
+  /* Alterna el fondo de las filas si usas striped */
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fffaf0;
+  }
+  
+  /* Efecto hover en las filas */
+  .table-hover tbody tr:hover {
+    background-color: #f2e6d8;
+  }
+  
+  /* Override de la clase table-dark de Bootstrap */
+  .table-dark,
+  .table-dark th,
+  .table-dark td {
+    background-color: #fffaf0 !important;
+    color: #6B4423 !important;
+  }

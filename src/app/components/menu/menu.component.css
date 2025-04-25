@@ -1,0 +1,19 @@
+.fixed-nav {
+    background-color: #f5f5dc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que el menú se superponga al contenido */
+  }
+  
+  /* Ajuste del relleno superior para evitar que el contenido quede oculto */
+  body {
+    padding-top: 60px; /* Ajusta este valor según la altura del menú */
+  }
+  
+  /* Estilos para los enlaces del menú */
+  .nav-link {
+    color: #6B4423;
+    font-weight: bold;
+  }

@@ -1,0 +1,39 @@
+<!-- Asegúrate de haber importado FormsModule en tu módulo para usar ngModel -->
+<div class="busqueda-container">
+  <input
+    class="busqueda-input"
+    type="text"
+    placeholder="Buscar por tipo"
+    [(ngModel)]="busquedaNombre"
+  />
+</div>
+
+<div class="card-container">
+  @for (propiedad of propiedadesFiltradas; track propiedad.id) {
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{{ propiedad.titulo }}</h3>
+      </div>
+
+      <!-- Mostrar imagen si existe -->
+      @if (propiedad.imagen) {
+        <div class="card-image">
+          <img [src]="propiedad.imagen" alt="{{ propiedad.titulo }}" />
+        </div>
+      }
+
+      <div class="card-body">
+        <p class="propiedad-id"><strong>ID:</strong> {{ propiedad.id }}</p>
+        <p class="propiedad-tipo"><strong>Tipo:</strong> {{ propiedad.tipo_propiedad }}</p>
+        <p class="propiedad-descripcion"><strong>Descripción:</strong> {{ propiedad.descripcion }}</p>
+        <p class="propiedad-direccion">
+          <strong>Dirección:</strong> {{ propiedad.direccion }}, {{ propiedad.ciudad }}
+        </p>
+        <p class="propiedad-precio"><strong>Precio:</strong> ${{ propiedad.precio }}</p>
+        <p class="propiedad-habitaciones"><strong>Habitaciones:</strong> {{ propiedad.habitaciones }}</p>
+        <p class="propiedad-banos"><strong>Baños:</strong> {{ propiedad.banos }}</p>
+        <p class="propiedad-superficie"><strong>Superficie:</strong> {{ propiedad.superficie }} m²</p>
+      </div>
+    </div>
+  }
+</div>

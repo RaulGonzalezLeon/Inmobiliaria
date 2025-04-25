@@ -1,0 +1,11 @@
+/* Aseguramos que el contenedor ocupe toda la altura de la ventana */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* La sección de contenido se expande para empujar el footer hacia abajo */
+  .content {
+    flex: 1;
+  }
