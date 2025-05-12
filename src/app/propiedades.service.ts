@@ -32,4 +32,9 @@ export class PropiedadesService {
       JSON.stringify(propiedad)
     );
   }
+
+
+  getTiposPropiedad() {
+    return this.http.get(`${this.url}getTiposPropiedad.php`);
+  }
 }

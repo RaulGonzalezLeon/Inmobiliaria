@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Añadir Tipo de Propiedad</h5>
+
+    <form (ngSubmit)="onSubmit($event)">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          class="form-control"
+          name="nombre"
+          [(ngModel)]="tipo.nombre"
+          required
+        />
+        <div class="invalid-feedback">Debe introducir un nombre válido.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+    @if (mostrarBanner) {
+      <div class="alert alert-success mt-3">
+        Tipo de propiedad añadido correctamente.
+      </div>
+    }
+  </div>
+</div>
+
+
+

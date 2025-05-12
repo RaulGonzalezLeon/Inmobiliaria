@@ -17,24 +17,23 @@
       </div>
     </div>
     
-    <div class="mb-3">
-      <label for="tipo" class="form-label">Tipo de Propiedad</label>
-      <select
-        name="tipo"
-        [(ngModel)]="propiedad.tipo_propiedad"
-        id="tipo"
-        class="form-select"
-        required
-      >
-        <option value="">Seleccione un tipo</option>
-        <option value="Casa">Casa</option>
-        <option value="Departamento">Departamento</option>
-        <option value="Oficina">Oficina</option>
-      </select>
-      <div class="invalid-feedback">
-        <b>El tipo de propiedad es obligatorio</b>
-      </div>
-    </div>
+<div class="mb-3">
+  <label for="tipo" class="form-label">Tipo de Propiedad</label>
+  <select
+    name="tipo"
+    [(ngModel)]="propiedad.tipo_propiedad"
+    id="tipo"
+    class="form-select"
+    required
+  >
+    <option value="">Seleccione un tipo</option>
+    <!-- Usamos ngFor para mostrar los tipos de propiedad -->
+    <option *ngFor="let tipo of tiposPropiedad" [value]="tipo.id">{{ tipo.nombre }}</option>
+  </select>
+  <div class="invalid-feedback">
+    <b>El tipo de propiedad es obligatorio</b>
+  </div>
+</div>
     
     <div class="mb-3">
       <label for="descripcion" class="form-label">Descripción</label>

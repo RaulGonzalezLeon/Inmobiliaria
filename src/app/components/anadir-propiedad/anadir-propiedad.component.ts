@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Propiedades } from '../../models/Propiedades';
 import { PropiedadesService } from '../../propiedades.service';
@@ -6,15 +6,19 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-anadir-propiedad',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './anadir-propiedad.component.html',
   styleUrls: ['./anadir-propiedad.component.css']
 })
-export class AnadirPropiedadComponent {
+export class AnadirPropiedadComponent implements OnInit {
   valido: boolean = true;
   mostrarBanner: boolean = false;
   propiedad: Propiedades = new Propiedades(0, "", "", "", "", "", 0, 0, 0, 0, '');
   imagenSeleccionada: File | null = null;
+
+  // Lista de tipos de propiedad
+  tiposPropiedad: any[] = [];
 
   constructor(private PropiedadesServicio: PropiedadesService) {}
 
@@ -79,7 +83,15 @@ export class AnadirPropiedadComponent {
       }
     });
   }
+
+  // Método para obtener los tipos de propiedad
+  ngOnInit() {
+    this.PropiedadesServicio.getTiposPropiedad().subscribe((data: any) => {
+      this.tiposPropiedad = data;
+    });
+  }
 }
+
 
 
 
