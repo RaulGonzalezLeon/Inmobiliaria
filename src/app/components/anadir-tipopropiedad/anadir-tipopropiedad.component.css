@@ -1,0 +1,78 @@
+/* Contenedor principal */
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fffaf0; /* Fondo beige clarito */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #6B4423; /* Color de texto */
+  margin-bottom: 70px; /* Espacio extra para que el footer no lo tape */
+}
+
+/* Título centrado */
+.text-center {
+  text-align: center;
+  color: #6B4423;
+  font-size: 40px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+/* Etiquetas del formulario */
+.form-label {
+  font-weight: 500;
+  color: #6B4423;
+}
+
+/* Controles de formulario */
+.form-control,
+.form-select {
+  border-radius: 4px;
+  color: #6B4423;
+}
+
+/* Botón personalizado */
+.btn-primary {
+  background-color: #6B4423;
+  border-color: #6B4423;
+  font-weight: bold;
+  color: #fffaf0;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.btn-primary:hover {
+  background-color: #8a5a3b;
+  border-color: #8a5a3b;
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Mensajes de validación */
+.invalid-feedback {
+  color: red;
+  font-weight: bold;
+}
+
+/* Alerta de éxito */
+.alert {
+  margin-top: 20px;
+  border-radius: 4px;
+  background-color: #fffaf0;
+  color: #00ff1e;
+}

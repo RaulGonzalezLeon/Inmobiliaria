@@ -1,0 +1,48 @@
+.detalle-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.cerrar-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #d33;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.detalle-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.detalle-imagen img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.detalle-info {
+  flex: 1;
+}
+
+.detalle-info h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.detalle-info p {
+  margin: 0.5rem 0;
+}

@@ -1,6 +1,6 @@
-<div class="card">
+<div class="container card">
   <div class="card-body">
-    <h5 class="card-title">Añadir Tipo de Propiedad</h5>
+    <h5 class="card-title text-center">Añadir Tipo de Propiedad</h5>
 
     <form (ngSubmit)="onSubmit($event)">
       <div class="mb-3">
@@ -13,19 +13,24 @@
           [(ngModel)]="tipo.nombre"
           required
         />
-        <div class="invalid-feedback">Debe introducir un nombre válido.</div>
+        @if (!valido) {
+          <div class="invalid-feedback d-block">
+            El nombre es obligatorio y no puede estar repetido.
+          </div>
+        }
       </div>
 
       <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 
     @if (mostrarBanner) {
-      <div class="alert alert-success mt-3">
+      <div class="alert alert-success text-center">
         Tipo de propiedad añadido correctamente.
       </div>
     }
   </div>
 </div>
+
 
 
 

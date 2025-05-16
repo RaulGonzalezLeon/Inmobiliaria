@@ -1,0 +1,34 @@
+<div class="detalle-container">
+  <button class="cerrar-btn" (click)="cerrarDetalle()">Cerrar</button>
+
+  <div class="detalle-content" style="display: flex; gap: 20px; flex-wrap: wrap;">
+    
+    <!-- Columna de la imagen -->
+    <div class="detalle-imagen" style="flex: 1; min-width: 300px;">
+      @if (propiedad?.imagen) {
+        <img
+          [src]="propiedad.imagen"
+          alt="{{ propiedad.titulo }}"
+          style="width: 400px; height: 400px; object-fit: cover; border-radius: 8px;"
+        />
+      }
+    </div>
+
+    <!-- Columna de los detalles -->
+    <div class="detalle-info" style="flex: 1; min-width: 300px;">
+      <h2>{{ propiedad.titulo }}</h2>
+      <p><strong>ID:</strong> {{ propiedad.id }}</p>
+      <p><strong>Tipo:</strong> {{ getNombreTipoPropiedad(propiedad.tipo_propiedad) }}</p>
+      <p><strong>Descripción:</strong> {{ propiedad.descripcion }}</p>
+      <p><strong>Dirección:</strong> {{ propiedad.direccion }}, {{ propiedad.ciudad }}</p>
+      <p><strong>Precio:</strong> ${{ propiedad.precio}}</p>
+      <p><strong>Habitaciones:</strong> {{ propiedad.habitaciones }}</p>
+      <p><strong>Baños:</strong> {{ propiedad.banos }}</p>
+      <p><strong>Superficie:</strong> {{ propiedad.superficie }} m²</p>
+    </div>
+    
+  </div>
+</div>
+
+
+

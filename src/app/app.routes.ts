@@ -4,6 +4,7 @@ import { AnadirPropiedadComponent } from './components/anadir-propiedad/anadir-p
 import { AnadirTipopropiedadComponent } from './components/anadir-tipopropiedad/anadir-tipopropiedad.component'; // Importa el componente
 import { EliminarComponent } from './components/eliminar/eliminar.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
@@ -11,6 +12,7 @@ export const routes: Routes = [
     { path: 'anadir-tipo', component: AnadirTipopropiedadComponent },
     { path: 'eliminar', component: EliminarComponent },
     { path: 'modificar', component: ModificarComponent },
-    { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: '**', redirectTo: 'inicio', pathMatch: 'full' },
 ];

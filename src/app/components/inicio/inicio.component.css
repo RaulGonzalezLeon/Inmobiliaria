@@ -19,7 +19,12 @@ body {
   border: 1px solid #e6d8c3; /* Borde en tono beige */
   border-radius: 4px;
   background-color: #fffaf0; /* Fondo beige clarito */
-  
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.busqueda-input:focus {
+  border-color: #6B4423; /* Color más oscuro para el borde cuando esté enfocado */
 }
 
 /* Contenedor principal de las tarjetas */
@@ -34,7 +39,7 @@ body {
 
 /* Tarjeta individual */
 .card {
-  width: calc(50% - 20px); /* Dos tarjetas por fila */
+  width: calc(33.33% - 20px); /* Tres tarjetas por fila (ancho ajustado) */
   background-color: #fffaf0; /* Fondo de la tarjeta en tono beige clarito */
   border: 1px solid #e6d8c3; /* Borde en tono beige */
   border-radius: 8px;
@@ -42,7 +47,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* Efecto hover para la tarjeta */
 .card:hover {
   transform: translateY(-5px);
 }
@@ -60,6 +64,7 @@ body {
   margin: 0;
   font-size: 1.25em;
   color: #333;
+  font-weight: bold;
 }
 
 /* Cuerpo de la tarjeta */
@@ -96,6 +101,7 @@ img.img-fluid {
   object-fit: contain; /* Evita que se recorte */
 }
 
+/* Imagen unificada para tamaño fijo */
 .unified-image {
   width: 300px;         /* Ancho fijo */
   height: 300px;        /* Alto fijo */
@@ -114,4 +120,22 @@ img.img-fluid {
   padding: 20px;
   text-align: center;
   z-index: 1000;
+}
+
+/* Estilos adicionales de accesibilidad y adaptabilidad */
+@media screen and (max-width: 768px) {
+  /* Ajusta la visualización en pantallas más pequeñas */
+  .card {
+    width: 100%; /* Las tarjetas ocupan el 100% del ancho */
+  }
+  
+  .busqueda-container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .card-container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }

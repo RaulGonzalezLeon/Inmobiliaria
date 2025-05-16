@@ -1,19 +1,45 @@
 .fixed-nav {
-    background-color: #f5f5dc;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Asegura que el menú se superponga al contenido */
-  }
-  
-  /* Ajuste del relleno superior para evitar que el contenido quede oculto */
-  body {
-    padding-top: 60px; /* Ajusta este valor según la altura del menú */
-  }
-  
-  /* Estilos para los enlaces del menú */
-  .nav-link {
-    color: #6B4423;
-    font-weight: bold;
-  }
+  background-color: #f5f5dc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que el menú se superponga al contenido */
+}
+
+/* Ajuste del relleno superior para evitar que el contenido quede oculto */
+body {
+  padding-top: 60px; /* Ajusta este valor según la altura del menú */
+}
+
+/* Estilos para los enlaces del menú */
+.nav-link {
+  color: #6B4423;
+  font-weight: bold;
+}
+
+/* Mostrar el dropdown al pasar el ratón */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* Evita salto hacia abajo */
+}
+
+/* Estilo del fondo del menú desplegable */
+.dropdown-menu {
+  background-color: #fffaf0;
+  border-radius: 6px;
+  border: 1px solid #e0d9c6;
+  padding: 0.5rem 0;
+}
+
+/* Estilos para los ítems del dropdown */
+.dropdown-item {
+  color: #6B4423;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+}
+
+.dropdown-item:hover {
+  background-color: #f0e6d2;
+  color: #6B4423;
+}

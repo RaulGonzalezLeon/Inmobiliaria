@@ -1,0 +1,39 @@
+<div class="login-form">
+  <h2>Login</h2>
+  <form (ngSubmit)="login()">
+    <div>
+      <label for="correo">Correo</label>
+      <input
+        type="email"
+        id="correo"
+        [(ngModel)]="usuario.correo"
+        name="correo"
+        required
+        placeholder="Ingrese su correo"
+      />
+    </div>
+
+    <div>
+      <label for="contrasena">Contraseña</label>
+      <input
+        type="password"
+        id="contrasena"
+        [(ngModel)]="usuario.contrasena"
+        name="contrasena"
+        required
+        placeholder="Ingrese su contraseña"
+      />
+    </div>
+
+    <div *ngIf="loading" class="loading-message">
+      <p>Cargando...</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <button type="submit" [disabled]="loading">Ingresar</button>
+  </form>
+</div>
+
