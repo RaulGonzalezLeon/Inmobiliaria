@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { Usuario } from '../../models/Usuarios';
 import { FormsModule } from '@angular/forms';
@@ -7,32 +7,52 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule, RouterModule],
 })
 export class LoginComponent {
-  usuario: Usuario = { correo: '', contrasena: '', rol: '' };
-  errorMessage: string = '';
-  loading: boolean = false;
+  usuario: Usuario = {
+    correo: '',
+    contrasena: '',
+    rol: '' // Este campo puede eliminarse si no se rellena desde el frontend
+  };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  errorMessage = '';
+  loading = false;
 
-  login() {
-    this.errorMessage = '';  // Limpiar cualquier mensaje de error
-    this.loading = true;      // Mostrar estado de carga
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-    this.authService.login(this.usuario).subscribe(
-      (response) => {
-        this.loading = false;  // Desactivar el estado de carga
+  login(): void {
+    this.resetUI();
 
-        // El servicio ya maneja la redirección, no es necesario hacer nada aquí
+    // Validación rápida de campos vacíos
+    if (!this.usuario.correo || !this.usuario.contrasena) {
+      this.errorMessage = 'Por favor, introduce tu correo y contraseña.';
+      return;
+    }
+
+    this.loading = true;
+
+    this.authService.login(this.usuario).subscribe({
+      next: () => {
+        // Redirección ya está en el AuthService
+        this.loading = false;
       },
-      (error) => {
-        this.loading = false;  // Desactivar el estado de carga
-        this.errorMessage = 'Ocurrió un error al intentar iniciar sesión. Intenta de nuevo.';
-        console.error('Error en login:', error);
+      error: (error) => {
+        this.loading = false;
+        this.errorMessage = error?.error?.mensaje || 'Credenciales incorrectas o error de red.';
+        console.error('Error al iniciar sesión:', error);
       }
-    );
+    });
+  }
+
+  private resetUI(): void {
+    this.errorMessage = '';
+    this.loading = false;
   }
 }

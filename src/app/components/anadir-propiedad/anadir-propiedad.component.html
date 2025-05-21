@@ -18,18 +18,19 @@
     </div>
     
 <div class="mb-3">
-  <label for="tipo" class="form-label">Tipo de Propiedad</label>
-  <select
-    name="tipo"
-    [(ngModel)]="propiedad.tipo_propiedad"
-    id="tipo"
-    class="form-select"
-    required
-  >
-    <option value="">Seleccione un tipo</option>
-    <!-- Usamos ngFor para mostrar los tipos de propiedad -->
-    <option *ngFor="let tipo of tiposPropiedad" [value]="tipo.id">{{ tipo.nombre }}</option>
-  </select>
+      <label for="tipo" class="form-label">Tipo de Propiedad</label>
+      <select
+        name="tipo"
+        [(ngModel)]="propiedad.tipo_propiedad"
+        id="tipo"
+        class="form-select"
+        required
+      >
+        <option value="">Seleccione un tipo</option>
+        @for (tipo of tiposPropiedad; track tipo.id) {
+          <option [value]="tipo.id">{{ tipo.nombre }}</option>
+        }
+      </select>
   <div class="invalid-feedback">
     <b>El tipo de propiedad es obligatorio</b>
   </div>
@@ -167,8 +168,11 @@
     </button>
   </form>
 
-  <div *ngIf="mostrarBanner" class="alert alert-success d-flex align-items-center" role="alert">
-    <span class="material-symbols-outlined me-2">check_circle</span>
-    <div>Se ha guardado la propiedad</div>
-  </div>
+
+  @if (mostrarBanner) {
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+      <span class="material-symbols-outlined me-2">check_circle</span>
+      <div>Se ha guardado la propiedad</div>
+    </div>
+  }
 </div>

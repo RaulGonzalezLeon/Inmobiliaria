@@ -9,3 +9,7 @@
   .content {
     flex: 1;
   }
+
+.main-content {
+  padding-top: 64px;
+}

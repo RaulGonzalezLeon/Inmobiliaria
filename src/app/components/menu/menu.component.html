@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Menú estilo imagen</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Tu hoja de estilos personalizada -->
-  <link rel="stylesheet" href="ruta-a-tu-css.css">
-</head>
-<body>
-  <!-- Menú Horizontal -->
-  <nav class="fixed-nav">
-    <ul class="nav justify-content-center py-2">
-      <li class="nav-item mx-4">
-        <a class="nav-link" routerLink="/inicio">Inicio</a>
-      </li>
+<nav class="fixed-nav shadow-sm">
+  <ul class="nav justify-content-center align-items-center py-2 px-3">
 
-      <!-- Dropdown para Viviendas -->
-      <li class="nav-item dropdown mx-4">
+    <!-- Visible para todos los logueados -->
+    <li class="nav-item mx-3">
+      <a class="nav-link" routerLink="/inicio">Inicio</a>
+    </li>
+
+    <!-- Opciones exclusivas para admin -->
+    @if (isAdmin) {
+      <li class="nav-item dropdown mx-3">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
           Viviendas
         </a>
@@ -29,8 +19,7 @@
         </ul>
       </li>
 
-      <!-- Dropdown para Propiedad -->
-      <li class="nav-item dropdown mx-4">
+      <li class="nav-item dropdown mx-3">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
           Propiedad
         </a>
@@ -38,11 +27,16 @@
           <li><a class="dropdown-item" routerLink="/anadir-tipo">Añadir Tipo de Propiedad</a></li>
         </ul>
       </li>
-    </ul>
-  </nav>
+    }
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <!-- Botón de cerrar sesión para cualquier usuario logueado -->
+    @if (isLoggedIn) {
+      <li class="nav-item ms-auto me-3">
+        <a class="nav-link text-danger fw-bold" (click)="logout()" role="button">Cerrar sesión</a>
+      </li>
+    }
+
+  </ul>
+</nav>
+
 

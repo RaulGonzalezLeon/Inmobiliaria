@@ -1,4 +1,7 @@
-/* Contenedor principal */
+/* ============================= */
+/*         FORMULARIO           */
+/* ============================= */
+
 .container {
   max-width: 600px;
   margin: auto;
@@ -6,72 +9,74 @@
   background-color: #fffaf0; /* Fondo beige clarito */
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  color: #6B4423; /* Color de texto */
-  margin-bottom: 70px; /* Espacio extra para que el footer no lo tape */
+  color: #6B4423;
+  margin-top: 20px;     /* Para no quedar pegado al navbar */
+  margin-bottom: 70px;  /* Espacio para que el footer no lo tape */
 }
 
-/* Etiquetas de formulario */
+/* Etiquetas del formulario */
 .form-label {
   font-weight: 500;
   color: #6B4423;
 }
 
-/* Controles de formulario */
+/* Inputs y selects */
 .form-control,
 .form-select {
   border-radius: 4px;
   color: #6B4423;
 }
 
-/* Botón de envío: se utiliza el color primario solicitado */
+/* Botón de envío */
 .btn-primary {
-  background-color: #6B4423;  /* Color principal */
+  background-color: #6B4423;
   border-color: #6B4423;
   font-weight: bold;
-  color: #fffaf0;             /* Texto claro para buen contraste */
-  padding: 12px 20px;         /* Mayor espacio interno */
-  border-radius: 6px;         /* Bordes más redondeados */
+  color: #fffaf0;
+  padding: 12px 20px;
+  border-radius: 6px;
   font-size: 1rem;
-  text-transform: uppercase;  /* Texto en mayúsculas */
+  text-transform: uppercase;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
   cursor: pointer;
   display: inline-block;
-  width: 100%;                /* Ocupa todo el ancho del formulario */
-  margin-top: 15px;           /* Espacio superior */
-  margin-bottom: 30px;        /* Espacio inferior */
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 30px;
 }
 
 .btn-primary:hover {
-  background-color: #8a5a3b; /* Variación para hover */
+  background-color: #8a5a3b;
   border-color: #8a5a3b;
-  transform: translateY(-2px); /* Pequeño efecto de elevación */
+  transform: translateY(-2px);
 }
 
 .btn-primary:active {
-  transform: translateY(0);  /* Vuelve a la posición original al hacer click */
+  transform: translateY(0);
 }
 
-/* Mensajes de validación */
+/* Mensajes de error */
 .invalid-feedback {
   color: red;
   font-weight: bold;
 }
 
-/* Alertas de éxito */
+/* Alertas (por ejemplo: éxito al añadir) */
 .alert {
   margin-top: 20px;
   border-radius: 4px;
   background-color: #fffaf0;
   color: #6B4423;
 }
+
+/* Título centrado */
 .text-center {
-  text-align: center;         /* Centra el contenido */
-  color: #6B4423;             /* Color de texto en marrón */
-  font-size: 40px;         /* Tamaño de fuente moderado */
-  margin: 0 auto;             /* Centra el bloque en su contenedor */
-  padding: 0.5rem 1rem;       /* Espaciado interno */
-  line-height: 1.4;           /* Altura de línea para mejorar la legibilidad */
+  text-align: center;
+  color: #6B4423;
+  font-size: 40px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  line-height: 1.4;
   font-weight: 800;
 }
-
