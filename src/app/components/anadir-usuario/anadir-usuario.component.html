@@ -7,10 +7,13 @@
       <input type="email" id="correo" name="correo" class="form-control" [(ngModel)]="usuario.correo" required>
     </div>
 
-    <!-- Rol fijo -->
+    <!-- Rol select -->
     <div class="mb-3">
       <label class="form-label">Rol</label>
-      <input type="text" class="form-control" value="usuario" readonly>
+      <select class="form-control" name="rol" [(ngModel)]="usuario.rol" required>
+        <option value="user" selected>user</option>
+        <option value="admin">admin</option>
+      </select>
     </div>
 
     <div class="mb-3">
@@ -18,7 +21,7 @@
       <input type="password" id="contrasena" name="contrasena" class="form-control" [(ngModel)]="usuario.contrasena" required>
     </div>
 
-    <button type="submit" class="btn btn-primary">Añadir</button>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Añadir</button>
   </form>
 
   <div class="mt-3 text-success" *ngIf="mensaje">{{ mensaje }}</div>

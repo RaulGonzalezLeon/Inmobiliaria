@@ -11,6 +11,10 @@
   height: 48px;
   z-index: 1000;
   transition: top 0.3s ease;
+
+  /* Bordes redondeados y sombra */
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .fixed-nav.hide-nav {

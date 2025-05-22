@@ -1,0 +1,50 @@
+<h2>Formulario de Contacto</h2>
+
+<form [formGroup]="contactoForm" (ngSubmit)="enviar()">
+
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" type="text" formControlName="nombre" />
+  @if (contactoForm.get('nombre')?.touched && contactoForm.get('nombre')?.invalid) {
+    <div style="color: red;">El nombre es obligatorio.</div>
+  }
+
+  <label for="correo">Correo electrónico:</label>
+  <input id="correo" type="email" formControlName="correo" readonly />
+  @if (contactoForm.get('correo')?.touched && contactoForm.get('correo')?.invalid) {
+    <div style="color: red;">Introduce un correo válido.</div>
+  }
+
+  <label for="telefono">Teléfono:</label>
+  <input id="telefono" type="text" formControlName="telefono" />
+
+<label for="propiedad_id">ID de Propiedad:</label>
+<select id="propiedad_id" formControlName="propiedad_id" (mousedown)="$event.preventDefault()" (keydown)="$event.preventDefault()">
+  <option value="">Selecciona una propiedad</option>
+  <option *ngFor="let prop of propiedades" [value]="prop.id">
+    {{ prop.id }} - {{ prop.titulo || prop.direccion || 'Sin título' }}
+  </option>
+</select>
+  @if (contactoForm.get('propiedad_id')?.touched && contactoForm.get('propiedad_id')?.invalid) {
+    <div style="color: red;">Debes seleccionar una propiedad.</div>
+  }
+
+  <label for="asunto">Asunto:</label>
+  <textarea id="asunto" formControlName="asunto"></textarea>
+  @if (contactoForm.get('asunto')?.touched && contactoForm.get('asunto')?.invalid) {
+    <div style="color: red;">El asunto es obligatorio.</div>
+  }
+
+  <button type="submit">Enviar</button>
+</form>
+
+<!-- Mensajes -->
+@if (enviado) {
+  <div style="color: green; margin-top: 10px;">
+    ¡El contacto se ha enviado correctamente!
+  </div>
+}
+@else if (error) {
+  <div style="color: red; margin-top: 10px;">
+    {{ error }}
+  </div>
+}

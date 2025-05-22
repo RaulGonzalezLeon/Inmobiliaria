@@ -5,16 +5,24 @@ import { AnadirTipopropiedadComponent } from './components/anadir-tipopropiedad/
 import { EliminarComponent } from './components/eliminar/eliminar.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
 import { LoginComponent } from './components/login/login.component';
-import { AnadirUsuarioComponent } from './components/anadir-usuario/anadir-usuario.component'; // ✅ Importación añadida
+import { AnadirUsuarioComponent } from './components/anadir-usuario/anadir-usuario.component'; 
+import { AnadirContactoComponent } from './components/anadir-contacto/anadir-contacto.component'; // 👈 Añadido
+import { AuthGuard } from './guards/auth.guard';
+import { NoAuthGuard } from './guards/no-auth.guard';
+import { DetalleViviendaComponent } from './components/detalle-vivienda/detalle-vivienda.component';
 
 export const routes: Routes = [
-  { path: 'inicio', component: InicioComponent },
-  { path: 'anadir', component: AnadirPropiedadComponent },
-  { path: 'anadir-tipo', component: AnadirTipopropiedadComponent },
-  { path: 'eliminar', component: EliminarComponent },
-  { path: 'modificar', component: ModificarComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'anadir-usuario', component: AnadirUsuarioComponent }, // ✅ Nueva ruta añadida
+  { path: 'inicio', component: InicioComponent},
+  { path: 'anadir', component: AnadirPropiedadComponent, canActivate: [AuthGuard] },
+  { path: 'anadir-tipo', component: AnadirTipopropiedadComponent, canActivate: [AuthGuard] },
+  { path: 'eliminar', component: EliminarComponent, canActivate: [AuthGuard] },
+  { path: 'modificar', component: ModificarComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard]  },
+  { path: 'anadir-usuario', component: AnadirUsuarioComponent, canActivate: [NoAuthGuard]  },
+  { path: 'anadir-contacto', component: AnadirContactoComponent }, // ✅ Nueva ruta
+  { path: 'vivienda/:id', component: DetalleViviendaComponent },
+  { path: 'anadir-contacto/:id', component: AnadirContactoComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'inicio', pathMatch: 'full' },
 ];
+

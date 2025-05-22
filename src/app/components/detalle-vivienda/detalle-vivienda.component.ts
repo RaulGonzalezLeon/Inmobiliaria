@@ -1,19 +1,30 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TipoPropiedadService } from '../../tipo-propiedad.service';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../../auth.service'; // <-- Importa AuthService
 
 @Component({
   selector: 'app-detalle-vivienda',
   templateUrl: './detalle-vivienda.component.html',
-  styleUrls: ['./detalle-vivienda.component.css']
+  styleUrls: ['./detalle-vivienda.component.css'],
+  standalone: true,
+  imports: [RouterModule]
 })
 export class DetalleViviendaComponent {
   @Input() propiedad: any;
   @Output() cerrar = new EventEmitter<void>();
 
   tiposPropiedad: any[] = [];
+  esAdmin: boolean = false;  // <-- bandera para saber si es admin
 
-  constructor(private tipoPropiedadService: TipoPropiedadService) {
+  constructor(
+    private tipoPropiedadService: TipoPropiedadService,
+    private authService: AuthService // <-- Inyecta AuthService
+  ) {
     this.cargarTiposPropiedad();
+
+    const usuario = this.authService.getCurrentUser();
+    this.esAdmin = usuario?.rol === 'admin';
   }
 
   cargarTiposPropiedad() {

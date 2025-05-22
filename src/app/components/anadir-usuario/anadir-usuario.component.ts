@@ -15,7 +15,7 @@ import { Usuario } from '../../models/Usuarios';
 export class AnadirUsuarioComponent {
   usuario: Usuario = {
     correo: '',
-    rol: 'usuario',
+    rol: 'user',
     contrasena: ''
   };
 

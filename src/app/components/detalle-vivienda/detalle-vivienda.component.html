@@ -21,14 +21,23 @@
       <p><strong>Tipo:</strong> {{ getNombreTipoPropiedad(propiedad.tipo_propiedad) }}</p>
       <p><strong>Descripción:</strong> {{ propiedad.descripcion }}</p>
       <p><strong>Dirección:</strong> {{ propiedad.direccion }}, {{ propiedad.ciudad }}</p>
-      <p><strong>Precio:</strong> ${{ propiedad.precio}}</p>
+      <p><strong>Precio:</strong> ${{ propiedad.precio }}</p>
       <p><strong>Habitaciones:</strong> {{ propiedad.habitaciones }}</p>
       <p><strong>Baños:</strong> {{ propiedad.banos }}</p>
       <p><strong>Superficie:</strong> {{ propiedad.superficie }} m²</p>
+
+@if (!esAdmin) {
+  <button 
+    class="btn btn-success mt-3"
+    [routerLink]="['/anadir-contacto']"
+    [queryParams]="{ propiedad_id: propiedad.id }"
+  >
+    Pregúntenos
+  </button>
+}
     </div>
-    
+
   </div>
 </div>
-
 
 
