@@ -14,14 +14,22 @@ import { Propiedades } from '../../models/Propiedades';
 export class EliminarComponent {
   propiedades: any;
   propiedadborrada: any;
+  tiposPropiedad: any[] = [];
 
   constructor(private propiedadesServicio: PropiedadesService) {
     this.recuperarTodos();
+    this.recuperarTipos();
   }
 
   recuperarTodos() {
     this.propiedadesServicio.recuperarTodos().subscribe((respuesta: any) => {
       this.propiedades = respuesta;
+    });
+  }
+
+  recuperarTipos() {
+    this.propiedadesServicio.getTiposPropiedad().subscribe((data: any) => {
+      this.tiposPropiedad = data;
     });
   }
 
@@ -44,10 +52,12 @@ export class EliminarComponent {
     }
   }
 
+  obtenerNombreTipo(id: number | string): string {
+    const tipo = this.tiposPropiedad.find(t => t.id == id);
+    return tipo ? tipo.nombre : 'Desconocido';
+  }
+
   trackById(index: number, item: any) {
     return item.id;
   }
 }
-
-
-

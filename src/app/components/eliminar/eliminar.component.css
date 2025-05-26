@@ -1,48 +1,86 @@
-/* Estilos personalizados para la tabla */
-.text-center {
-  text-align: center;         /* Centra el contenido */
-  color: #6B4423;             /* Color de texto en marrón */
-  font-size: 40px;         /* Tamaño de fuente moderado */
-  margin: 0 auto;             /* Centra el bloque en su contenedor */
-  padding: 0.5rem 1rem;       /* Espaciado interno */
-  line-height: 1.4;           /* Altura de línea para mejorar la legibilidad */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.eliminar-container {
+  margin-bottom: 100px; /* Evita que el contenido quede tapado */
+}
+
+/* Título */
+.eliminar-titulo {
+  text-align: center;
+  color: #6B4423;
+  font-size: 40px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  line-height: 1.4;
   font-weight: 800;
 }
-.table {
-    background-color: #fffaf0; /* Fondo beige clarito */
-    color: #6B4423;           /* Color de texto */
-    border: 1px solid #e6d8c3;
-    border-collapse: collapse;
-    width: 100%;
+
+/* Tarjetas */
+.eliminar-card {
+  background-color: #fffaf0;
+  color: #6B4423;
+  border: 1px solid #e6d8c3;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.eliminar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(107, 68, 35, 0.2);
+}
+
+.eliminar-card-title {
+  color: #6B4423;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.eliminar-card-subtitle {
+  font-size: 0.95rem;
+  color: #8a5a3b;
+}
+
+.eliminar-card-text {
+  font-size: 0.95rem;
+}
+
+/* Botón Borrar */
+.eliminar-btn {
+  background-color: #a94442;
+  border: none;
+  color: #fffaf0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.eliminar-btn:hover {
+  background-color: #922d2d;
+  transform: translateY(-2px);
+}
+
+/* Modal */
+.eliminar-modal {
+  border-radius: 8px;
+  border: 2px solid #e6d8c3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .eliminar-card-title {
+    font-size: 1.1rem;
   }
-  
-  .table th,
-  .table td {
-    border: 1px solid #e6d8c3;
-    padding: 10px;
-    text-align: center;
+
+  .eliminar-card-subtitle,
+  .eliminar-card-text,
+  .list-unstyled li {
+    font-size: 0.9rem;
   }
-  
-  /* Para el encabezado de la tabla */
-  .table thead {
-    background-color: #fffaf0; /* Aplicamos el mismo fondo para un look uniforme */
-    color: #6B4423;
+
+  .eliminar-titulo {
+    font-size: 28px;
   }
-  
-  /* Alterna el fondo de las filas si usas striped */
-  .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #fffaf0;
-  }
-  
-  /* Efecto hover en las filas */
-  .table-hover tbody tr:hover {
-    background-color: #f2e6d8;
-  }
-  
-  /* Override de la clase table-dark de Bootstrap */
-  .table-dark,
-  .table-dark th,
-  .table-dark td {
-    background-color: #fffaf0 !important;
-    color: #6B4423 !important;
-  }
+}

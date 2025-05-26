@@ -1,8 +1,8 @@
-<div class="login-form">
-  <h2>Login</h2>
+<div class="container">
+  <h2 class="text-center">Login</h2>
   <form (ngSubmit)="login()">
-    <div>
-      <label for="correo">Correo</label>
+    <div class="mb-3">
+      <label for="correo" class="form-label">Correo</label>
       <input
         type="email"
         id="correo"
@@ -10,11 +10,12 @@
         name="correo"
         required
         placeholder="Ingrese su correo"
+        class="form-control"
       />
     </div>
 
-    <div>
-      <label for="contrasena">Contraseña</label>
+    <div class="mb-3">
+      <label for="contrasena" class="form-label">Contraseña</label>
       <input
         type="password"
         id="contrasena"
@@ -22,23 +23,22 @@
         name="contrasena"
         required
         placeholder="Ingrese su contraseña"
+        class="form-control"
       />
     </div>
 
-    <div *ngIf="loading" class="loading-message">
+    <div *ngIf="loading" class="alert">
       <p>Cargando...</p>
     </div>
 
-    <div *ngIf="errorMessage" class="error-message">
+    <div *ngIf="errorMessage" class="invalid-feedback d-block">
       <p>{{ errorMessage }}</p>
     </div>
 
-    <button type="submit" [disabled]="loading">Ingresar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="loading">Ingresar</button>
   </form>
 
-  <!-- ✅ Enlace para registrarse -->
   <div class="mt-3">
     <p>¿No tienes cuenta? <a routerLink="/anadir-usuario">Créatela aquí</a></p>
   </div>
 </div>
-

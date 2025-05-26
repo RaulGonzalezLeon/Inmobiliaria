@@ -1,6 +1,7 @@
 <div class="container mt-4">
   <h2 class="text-center mb-4">Añadir Nueva Vivienda</h2>
   <form novalidate class="needs-validation" (ngSubmit)="onSubmit($event)">
+    
     <div class="mb-3">
       <label for="titulo" class="form-label">Título</label>
       <input
@@ -12,12 +13,15 @@
         placeholder="Escriba el título"
         required
       />
-      <div class="invalid-feedback">
+      <div class="invalid-feedback" *ngIf="!propiedad.titulo">
         <b>El título es obligatorio</b>
       </div>
+      <div class="invalid-feedback" *ngIf="propiedad.titulo && (propiedad.titulo.length < 4 || propiedad.titulo.length > 150)">
+        <b>El título debe tener entre 4 y 150 caracteres</b>
+      </div>
     </div>
-    
-<div class="mb-3">
+
+    <div class="mb-3">
       <label for="tipo" class="form-label">Tipo de Propiedad</label>
       <select
         name="tipo"
@@ -31,11 +35,11 @@
           <option [value]="tipo.id">{{ tipo.nombre }}</option>
         }
       </select>
-  <div class="invalid-feedback">
-    <b>El tipo de propiedad es obligatorio</b>
-  </div>
-</div>
-    
+      <div class="invalid-feedback">
+        <b>El tipo de propiedad es obligatorio</b>
+      </div>
+    </div>
+
     <div class="mb-3">
       <label for="descripcion" class="form-label">Descripción</label>
       <textarea
@@ -46,11 +50,14 @@
         placeholder="Ingrese una descripción"
         required
       ></textarea>
-      <div class="invalid-feedback">
+      <div class="invalid-feedback" *ngIf="!propiedad.descripcion">
         <b>La descripción es obligatoria</b>
       </div>
+      <div class="invalid-feedback" *ngIf="propiedad.descripcion && (propiedad.descripcion.length < 10 || propiedad.descripcion.length > 300)">
+        <b>La descripción debe tener entre 10 y 300 caracteres</b>
+      </div>
     </div>
-    
+
     <div class="mb-3">
       <label for="direccion" class="form-label">Dirección</label>
       <input
@@ -62,11 +69,14 @@
         placeholder="Ingrese la dirección"
         required
       />
-      <div class="invalid-feedback">
+      <div class="invalid-feedback" *ngIf="!propiedad.direccion">
         <b>La dirección es obligatoria</b>
       </div>
+      <div class="invalid-feedback" *ngIf="propiedad.direccion && (propiedad.direccion.length < 4 || propiedad.direccion.length > 150)">
+        <b>La dirección debe tener entre 4 y 150 caracteres</b>
+      </div>
     </div>
-    
+
     <div class="mb-3">
       <label for="ciudad" class="form-label">Ciudad</label>
       <input
@@ -78,11 +88,14 @@
         placeholder="Ingrese la ciudad"
         required
       />
-      <div class="invalid-feedback">
+      <div class="invalid-feedback" *ngIf="!propiedad.ciudad">
         <b>La ciudad es obligatoria</b>
       </div>
+      <div class="invalid-feedback" *ngIf="propiedad.ciudad && (propiedad.ciudad.length < 2 || propiedad.ciudad.length > 100)">
+        <b>La ciudad debe tener entre 2 y 100 caracteres</b>
+      </div>
     </div>
-    
+
     <div class="mb-3">
       <label for="precio" class="form-label">Precio</label>
       <input
@@ -92,14 +105,17 @@
         id="precio"
         class="form-control"
         placeholder="Escriba el precio"
-        min="1"
+        min="50000"
         required
       />
-      <div class="invalid-feedback">
-        <b>El precio es obligatorio y debe ser mayor a 0</b>
+      <div class="invalid-feedback" *ngIf="!propiedad.precio">
+        <b>El precio es obligatorio</b>
+      </div>
+      <div class="invalid-feedback" *ngIf="propiedad.precio && propiedad.precio < 50000">
+        <b>El precio debe ser de al menos 50.000€</b>
       </div>
     </div>
-    
+
     <div class="mb-3">
       <label for="habitaciones" class="form-label">Habitaciones</label>
       <input
@@ -112,11 +128,14 @@
         min="1"
         required
       />
-      <div class="invalid-feedback">
-        <b>Debe indicar al menos una habitación</b>
+      <div class="invalid-feedback" *ngIf="!propiedad.habitaciones">
+        <b>Debe indicar el número de habitaciones</b>
+      </div>
+      <div class="invalid-feedback" *ngIf="propiedad.habitaciones && propiedad.habitaciones < 1">
+        <b>Debe haber al menos 1 habitación</b>
       </div>
     </div>
-    
+
     <div class="mb-3">
       <label for="banos" class="form-label">Baños</label>
       <input
@@ -129,11 +148,14 @@
         min="1"
         required
       />
-      <div class="invalid-feedback">
-        <b>Debe indicar al menos un baño</b>
+      <div class="invalid-feedback" *ngIf="!propiedad.banos">
+        <b>Debe indicar el número de baños</b>
+      </div>
+      <div class="invalid-feedback" *ngIf="propiedad.banos && propiedad.banos < 1">
+        <b>Debe haber al menos 1 baño</b>
       </div>
     </div>
-    
+
     <div class="mb-3">
       <label for="superficie" class="form-label">Superficie (m²)</label>
       <input
@@ -143,15 +165,17 @@
         id="superficie"
         class="form-control"
         placeholder="Superficie en metros cuadrados"
-        min="1"
+        min="30"
         required
       />
-      <div class="invalid-feedback">
+      <div class="invalid-feedback" *ngIf="!propiedad.superficie">
         <b>Debe indicar la superficie</b>
+      </div>
+      <div class="invalid-feedback" *ngIf="propiedad.superficie && propiedad.superficie < 30">
+        <b>La superficie mínima es de 30 m²</b>
       </div>
     </div>
 
-    <!-- Campo para la imagen -->
     <div class="mb-3">
       <label for="imagen" class="form-label">Imagen</label>
       <input
@@ -168,11 +192,10 @@
     </button>
   </form>
 
-
-  @if (mostrarBanner) {
-    <div class="alert alert-success d-flex align-items-center" role="alert">
-      <span class="material-symbols-outlined me-2">check_circle</span>
-      <div>Se ha guardado la propiedad</div>
-    </div>
-  }
+@if (mostrarBanner) {
+  <div class="alert alert-success custom-banner d-flex align-items-center" role="alert">
+    <span class="material-symbols-outlined me-2 banner-icon">check_circle</span>
+    <div class="banner-text">¡Propiedad añadida correctamente!</div>
+  </div>
+}
 </div>

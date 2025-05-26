@@ -1,60 +1,76 @@
-/* Estilos para el formulario de login */
-.login-form {
-  width: 300px;
+/* ============================= */
+/*         FORMULARIO           */
+/* ============================= */
+
+.container {
+  max-width: 600px;
   margin: auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #fffaf0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #6B4423;
+  margin-top: 20px;
+  margin-bottom: 70px;
 }
 
-.login-form h2 {
-  text-align: center;
-  margin-bottom: 20px;
+.form-label {
+  font-weight: 500;
+  color: #6B4423;
 }
 
-.login-form div {
-  margin-bottom: 15px;
+.form-control,
+.form-select {
+  border-radius: 4px;
+  color: #6B4423;
 }
 
-.login-form label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-.login-form input {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.login-form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
+.btn-primary {
+  background-color: #6B4423;
+  border-color: #6B4423;
+  font-weight: bold;
+  color: #fffaf0;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
   cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 30px;
 }
 
-.login-form button:disabled {
-  background-color: #aaa;
-  cursor: not-allowed;
+.btn-primary:hover {
+  background-color: #8a5a3b;
+  border-color: #8a5a3b;
+  transform: translateY(-2px);
 }
 
-.loading-message {
-  text-align: center;
-  color: #007bff;
+.btn-primary:active {
+  transform: translateY(0);
 }
 
-.error-message {
-  text-align: center;
+.invalid-feedback {
   color: red;
   font-weight: bold;
 }
 
+.alert {
+  margin-top: 20px;
+  border-radius: 4px;
+  background-color: #fffaf0;
+  color: #6B4423;
+}
+
+.text-center {
+  text-align: center;
+  color: #6B4423;
+  font-size: 40px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  line-height: 1.4;
+  font-weight: 800;
+}

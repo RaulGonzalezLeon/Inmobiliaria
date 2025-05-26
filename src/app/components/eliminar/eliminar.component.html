@@ -1,65 +1,54 @@
-<div class="container mt-4">
-  <h1 class="text-center">Administración de Vivienda - Eliminar</h1>
-  <table class="table table-bordered table-striped">
-    <thead class="table-dark">
-      <tr>
-        <th>Id</th>
-        <th>Título</th>
-        <th>Tipo Propiedad</th>
-        <th>Descripción</th>
-        <th>Dirección</th>
-        <th>Ciudad</th>
-        <th>Precio</th>
-        <th>Habitaciones</th>
-        <th>Baños</th>
-        <th>Superficie</th>
-        <th>Borrar</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (prop of propiedades; track prop.id) {
-        <tr>
-          <td>{{ prop.id }}</td>
-          <td>{{ prop.titulo }}</td>
-          <td>{{ prop.tipo_propiedad }}</td>
-          <td>{{ prop.descripcion }}</td>
-          <td>{{ prop.direccion }}</td>
-          <td>{{ prop.ciudad }}</td>
-          <td>{{ prop.precio }}</td>
-          <td>{{ prop.habitaciones }}</td>
-          <td>{{ prop.banos }}</td>
-          <td>{{ prop.superficie }}</td>
-          <td>
+<div class="container eliminar-container mt-4">
+  <h1 class="text-center eliminar-titulo mb-4">Administración de Viviendas - Eliminar</h1>
+
+  <div class="row gy-3">
+    @for (prop of propiedades; track prop.id) {
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card eliminar-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title eliminar-card-title">{{ prop.titulo }} (ID: {{ prop.id }})</h5>
+            <p class="card-subtitle eliminar-card-subtitle mb-2 text-muted">
+              Tipo: {{ obtenerNombreTipo(prop.tipo_propiedad) }}
+            </p>
+            <p class="card-text eliminar-card-text flex-grow-1">{{ prop.descripcion }}</p>
+            <ul class="list-unstyled mb-3 small">
+              <li><strong>Dirección:</strong> {{ prop.direccion }}</li>
+              <li><strong>Ciudad:</strong> {{ prop.ciudad }}</li>
+              <li><strong>Precio:</strong> {{ prop.precio | currency:'EUR' }}</li>
+              <li><strong>Habitaciones:</strong> {{ prop.habitaciones }}</li>
+              <li><strong>Baños:</strong> {{ prop.banos }}</li>
+              <li><strong>Superficie:</strong> {{ prop.superficie }} m²</li>
+            </ul>
             <button
               type="button"
-              class="btn btn-danger btn-sm"
+              class="btn btn-danger eliminar-btn mt-auto"
               data-bs-toggle="modal"
               data-bs-target="#deleteModal"
               (click)="articuloAEliminar(prop)"
             >
               Borrar
             </button>
-          </td>
-        </tr>
-      }
-    </tbody>
-  </table>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
 </div>
 
 <!-- Modal de Confirmación -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content eliminar-modal">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="deleteModalLabel">Confirmación</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
-        <h3>¿Estás seguro que deseas eliminar el artículo?</h3>
+        <h5>¿Estás seguro de que deseas eliminar esta vivienda?</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="confirmarBaja()">Eliminar</button>
+        <button type="button" class="btn btn-danger" (click)="confirmarBaja()">Eliminar</button>
       </div>
     </div>
   </div>

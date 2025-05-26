@@ -1,50 +1,58 @@
-<h2>Formulario de Contacto</h2>
+<h2 class="text-center">Formulario de Contacto</h2>
 
-<form [formGroup]="contactoForm" (ngSubmit)="enviar()">
+<div class="container">
+  <form [formGroup]="contactoForm" (ngSubmit)="enviar()">
 
-  <label for="nombre">Nombre:</label>
-  <input id="nombre" type="text" formControlName="nombre" />
-  @if (contactoForm.get('nombre')?.touched && contactoForm.get('nombre')?.invalid) {
-    <div style="color: red;">El nombre es obligatorio.</div>
-  }
+    <label for="nombre" class="form-label">Nombre:</label>
+    <input id="nombre" type="text" formControlName="nombre" class="form-control"
+           [class.is-invalid]="formularioEnviado && getError('nombre')" />
+    @if (formularioEnviado && getError('nombre')) {
+      <div class="invalid-feedback">{{ getError('nombre') }}</div>
+    }
 
-  <label for="correo">Correo electrónico:</label>
-  <input id="correo" type="email" formControlName="correo" readonly />
-  @if (contactoForm.get('correo')?.touched && contactoForm.get('correo')?.invalid) {
-    <div style="color: red;">Introduce un correo válido.</div>
-  }
+    <label for="correo" class="form-label">Correo electrónico:</label>
+    <input id="correo" type="email" formControlName="correo" readonly class="form-control"
+           [class.is-invalid]="formularioEnviado && getError('correo')" />
+    @if (formularioEnviado && getError('correo')) {
+      <div class="invalid-feedback">{{ getError('correo') }}</div>
+    }
 
-  <label for="telefono">Teléfono:</label>
-  <input id="telefono" type="text" formControlName="telefono" />
+    <label for="telefono" class="form-label">Teléfono:</label>
+    <input id="telefono" type="text" formControlName="telefono" class="form-control"
+           [class.is-invalid]="formularioEnviado && getError('telefono')" />
+    @if (formularioEnviado && getError('telefono')) {
+      <div class="invalid-feedback">{{ getError('telefono') }}</div>
+    }
 
-<label for="propiedad_id">ID de Propiedad:</label>
-<select id="propiedad_id" formControlName="propiedad_id" (mousedown)="$event.preventDefault()" (keydown)="$event.preventDefault()">
-  <option value="">Selecciona una propiedad</option>
-  <option *ngFor="let prop of propiedades" [value]="prop.id">
-    {{ prop.id }} - {{ prop.titulo || prop.direccion || 'Sin título' }}
-  </option>
-</select>
-  @if (contactoForm.get('propiedad_id')?.touched && contactoForm.get('propiedad_id')?.invalid) {
-    <div style="color: red;">Debes seleccionar una propiedad.</div>
-  }
+    <label for="propiedad_id" class="form-label">ID de Propiedad:</label>
+    <select id="propiedad_id" formControlName="propiedad_id" class="form-select"
+            (mousedown)="$event.preventDefault()" (keydown)="$event.preventDefault()"
+            [class.is-invalid]="formularioEnviado && getError('propiedad_id')">
+      <option value="">Selecciona una propiedad</option>
+      <option *ngFor="let prop of propiedades" [value]="prop.id">
+        {{ prop.id }} - {{ prop.titulo || prop.direccion || 'Sin título' }}
+      </option>
+    </select>
+    @if (formularioEnviado && getError('propiedad_id')) {
+      <div class="invalid-feedback">{{ getError('propiedad_id') }}</div>
+    }
 
-  <label for="asunto">Asunto:</label>
-  <textarea id="asunto" formControlName="asunto"></textarea>
-  @if (contactoForm.get('asunto')?.touched && contactoForm.get('asunto')?.invalid) {
-    <div style="color: red;">El asunto es obligatorio.</div>
-  }
+    <label for="asunto" class="form-label">Asunto:</label>
+    <textarea id="asunto" formControlName="asunto" class="form-control"
+              [class.is-invalid]="formularioEnviado && getError('asunto')"></textarea>
+    @if (formularioEnviado && getError('asunto')) {
+      <div class="invalid-feedback">{{ getError('asunto') }}</div>
+    }
 
-  <button type="submit">Enviar</button>
-</form>
+    <button  type="submit" class="btn-primary">Enviar</button>
 
-<!-- Mensajes -->
-@if (enviado) {
-  <div style="color: green; margin-top: 10px;">
-    ¡El contacto se ha enviado correctamente!
-  </div>
-}
-@else if (error) {
-  <div style="color: red; margin-top: 10px;">
-    {{ error }}
-  </div>
-}
+    <!-- Mensajes de estado -->
+    @if (enviado) {
+      <div class="alert alert-success">¡El contacto se ha enviado correctamente!</div>
+    }
+    @else if (error) {
+      <div class="alert alert-error">{{ error }}</div>
+    }
+
+  </form>
+</div>

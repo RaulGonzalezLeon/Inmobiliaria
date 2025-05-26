@@ -13,10 +13,26 @@ import { Propiedades } from '../../models/Propiedades';
 })
 export class ModificarComponent {
   propiedades: any;
-  prop: Propiedades = { id: 0, titulo: '', tipo_propiedad: '', descripcion: '', direccion: '', ciudad: '', precio: 0, habitaciones: 0, banos: 0, superficie: 0, imagen: ''};
+  tiposPropiedad: any[] = []; // ✅ Lista de tipos de propiedad
+  prop: Propiedades = {
+    id: 0,
+    titulo: '',
+    tipo_propiedad: '',
+    descripcion: '',
+    direccion: '',
+    ciudad: '',
+    precio: 0,
+    habitaciones: 0,
+    banos: 0,
+    superficie: 0,
+    imagen: ''
+  };
+
+  mostrarMensajeExito: boolean = false;  // <-- variable para controlar el mensaje
 
   constructor(private propiedadesServicio: PropiedadesService) {
     this.recuperarTodos();
+    this.recuperarTipos(); // ✅ Carga los tipos
   }
 
   recuperarTodos() {
@@ -25,11 +41,27 @@ export class ModificarComponent {
     });
   }
 
+  recuperarTipos() {
+    this.propiedadesServicio.getTiposPropiedad().subscribe((data: any) => {
+      this.tiposPropiedad = data;
+    });
+  }
+
   modificacion() {
+    if (this.prop.precio < 50000) {
+      alert('El precio no puede ser menor a 50,000.');
+      return; // No continuar con la modificación
+    }
+
     this.propiedadesServicio.modificacion(this.prop).subscribe((datos: any) => {
       if (datos['resultado'] === 'OK') {
-        alert(datos['mensaje']);
+        this.mostrarMensajeExito = true;
         this.recuperarTodos();
+
+        // Oculta el mensaje después de 3 segundos
+        setTimeout(() => {
+          this.mostrarMensajeExito = false;
+        }, 3000);
       }
     });
   }
@@ -37,6 +69,11 @@ export class ModificarComponent {
   seleccionar(propiedad: Propiedades) {
     this.propiedadesServicio.seleccionar(propiedad)
       .subscribe((result: any) => (this.prop = result[0]));
+  }
+
+  obtenerNombreTipo(id: number | string): string {
+    const tipo = this.tiposPropiedad.find(t => t.id == id);
+    return tipo ? tipo.nombre : 'Desconocido';
   }
 
   trackById(index: number, item: any) {

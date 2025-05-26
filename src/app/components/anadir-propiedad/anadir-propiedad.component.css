@@ -80,3 +80,36 @@
   line-height: 1.4;
   font-weight: 800;
 }
+/* Banner de éxito personalizado */
+.custom-banner {
+  background-color: #e6ddc4; /* Un tono beige más dorado */
+  border-left: 6px solid #6B4423;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  animation: fadeInSlideDown 0.5s ease-out;
+}
+
+/* Ícono dentro del banner */
+.banner-icon {
+  font-size: 28px;
+  color: #6B4423;
+}
+
+/* Texto del banner */
+.banner-text {
+  color: #6B4423;
+}
+
+/* Animación suave al aparecer */
+@keyframes fadeInSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

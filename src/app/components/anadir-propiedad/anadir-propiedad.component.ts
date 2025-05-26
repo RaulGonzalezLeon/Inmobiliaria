@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Propiedades } from '../../models/Propiedades';
 import { PropiedadesService } from '../../propiedades.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router'; // ✅ Importar Router
 
 @Component({
   selector: 'app-anadir-propiedad',
@@ -20,9 +21,13 @@ export class AnadirPropiedadComponent implements OnInit {
   // Lista de tipos de propiedad
   tiposPropiedad: any[] = [];
 
-  constructor(private PropiedadesServicio: PropiedadesService) {}
+  // ✅ Inyección del servicio Router
+  constructor(
+    private PropiedadesServicio: PropiedadesService,
+    private router: Router
+  ) {}
 
-  // Método para capturar el archivo y convertirlo a Base64
+  // Capturar archivo y convertirlo a Base64
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -35,16 +40,16 @@ export class AnadirPropiedadComponent implements OnInit {
     }
   }
 
-  // Método que se ejecuta al enviar el formulario
+  // Envío del formulario
   onSubmit(event: Event): void {
-    event.preventDefault();  // Previene el envío por defecto del formulario
+    event.preventDefault();  // Previene envío automático
     this.validar();
     if (this.valido) {
       this.alta();
     }
   }
 
-  // Método para enviar la propiedad (alta)
+  // Alta de propiedad y redirección tras éxito
   alta() {
     this.PropiedadesServicio.alta(this.propiedad).subscribe((resp: any) => {
       console.log(resp);
@@ -52,47 +57,58 @@ export class AnadirPropiedadComponent implements OnInit {
         this.mostrarBanner = true;
         setTimeout(() => {
           this.mostrarBanner = false;
+          this.router.navigate(['/login']); // ✅ Redirección al componente login
         }, 3000);
       }
     });
   }
 
-  // Método de validación
+  // Validación del formulario
   validar() {
     this.valido = true;
 
-    let campos = [
-      { id: "titulo", valor: this.propiedad.titulo },
+    const reglas = [
+      { id: "titulo", valor: this.propiedad.titulo, min: 4, max: 150 },
       { id: "tipo", valor: this.propiedad.tipo_propiedad },
-      { id: "descripcion", valor: this.propiedad.descripcion },
-      { id: "direccion", valor: this.propiedad.direccion },
-      { id: "ciudad", valor: this.propiedad.ciudad },
-      { id: "precio", valor: this.propiedad.precio, minimo: 1 },
-      { id: "habitaciones", valor: this.propiedad.habitaciones, minimo: 1 },
-      { id: "banos", valor: this.propiedad.banos, minimo: 1 },
-      { id: "superficie", valor: this.propiedad.superficie, minimo: 1 }
+      { id: "descripcion", valor: this.propiedad.descripcion, min: 10, max: 300 },
+      { id: "direccion", valor: this.propiedad.direccion, min: 4, max: 150 },
+      { id: "ciudad", valor: this.propiedad.ciudad, min: 2, max: 100 },
+      { id: "precio", valor: this.propiedad.precio, min: 50000 },
+      { id: "habitaciones", valor: this.propiedad.habitaciones, min: 1 },
+      { id: "banos", valor: this.propiedad.banos, min: 1 },
+      { id: "superficie", valor: this.propiedad.superficie, min: 30 }
     ];
 
-    campos.forEach(campo => {
-      let input = document.getElementById(campo.id) as HTMLInputElement;
-      if (!campo.valor || (campo.minimo && campo.valor < campo.minimo)) {
-        input.classList.add("is-invalid");
+    reglas.forEach(regla => {
+      const input = document.getElementById(regla.id) as HTMLInputElement;
+      let esValido = true;
+
+      if (typeof regla.valor === 'string') {
+        const longitud = regla.valor.trim().length;
+        if ((regla.min && longitud < regla.min) || (regla.max && longitud > regla.max)) {
+          esValido = false;
+        }
+      } else if (typeof regla.valor === 'number') {
+        if (regla.min && regla.valor < regla.min) {
+          esValido = false;
+        }
+      } else {
+        esValido = false;
+      }
+
+      if (!esValido) {
+        input?.classList.add("is-invalid");
         this.valido = false;
       } else {
-        input.classList.remove("is-invalid");
+        input?.classList.remove("is-invalid");
       }
     });
   }
 
-  // Método para obtener los tipos de propiedad
+  // Obtener tipos de propiedad
   ngOnInit() {
     this.PropiedadesServicio.getTiposPropiedad().subscribe((data: any) => {
       this.tiposPropiedad = data;
     });
   }
 }
-
-
-
-
-

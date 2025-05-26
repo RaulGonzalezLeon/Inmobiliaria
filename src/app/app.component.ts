@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
-import { AnadirPropiedadComponent } from "./components/anadir-propiedad/anadir-propiedad.component";
 import { MenuComponent } from "./components/menu/menu.component";
 import { FooterComponent } from "./components/footer/footer.component";
-import { EliminarComponent } from './components/eliminar/eliminar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AnadirPropiedadComponent, MenuComponent, FooterComponent, EliminarComponent],
+  imports: [RouterOutlet, MenuComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
