@@ -1,0 +1,21 @@
+<div class="form-container">
+  <h2>Cambiar Contraseña</h2>
+
+  <form [formGroup]="form" (ngSubmit)="cambiarContrasena()">
+    <div>
+      <label for="correo">Correo electrónico:</label>
+      <input id="correo" type="email" formControlName="correo" />
+    </div>
+
+    <div>
+      <label for="nuevaContrasena">Nueva contraseña:</label>
+      <input id="nuevaContrasena" type="password" formControlName="nuevaContrasena" />
+    </div>
+
+    <button type="submit">Cambiar contraseña</button>
+  </form>
+
+  <p *ngIf="mensaje" style="color: green;">{{ mensaje }}</p>
+  <p *ngIf="error" style="color: red;">{{ error }}</p>
+</div>
+

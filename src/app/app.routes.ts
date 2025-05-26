@@ -11,9 +11,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { NoAuthGuard } from './guards/no-auth.guard';
 import { DetalleViviendaComponent } from './components/detalle-vivienda/detalle-vivienda.component';
 import { NoAdminGuard } from './guards/no-admin.guard';
+import { CambiarContrasenaComponent } from './components/cambiar-contrasena/cambiar-contrasena.component';
 
 export const routes: Routes = [
-  { path: 'inicio', component: InicioComponent},
+  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard]},
   { path: 'anadir', component: AnadirPropiedadComponent, canActivate: [AuthGuard] },
   { path: 'anadir-tipo', component: AnadirTipopropiedadComponent, canActivate: [AuthGuard] },
   { path: 'eliminar', component: EliminarComponent, canActivate: [AuthGuard] },
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'anadir-contacto', component: AnadirContactoComponent, canActivate: [NoAdminGuard] }, 
   { path: 'vivienda/:id', component: DetalleViviendaComponent },
   { path: 'anadir-contacto/:id', component: AnadirContactoComponent },
+  { path: 'cambiar-contrasena', component: CambiarContrasenaComponent, canActivate: [NoAuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'inicio', pathMatch: 'full' },
 ];

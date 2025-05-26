@@ -1,6 +1,10 @@
 <div class="container eliminar-container mt-4">
   <h1 class="text-center eliminar-titulo mb-4">Administración de Viviendas - Eliminar</h1>
 
+  <div *ngIf="mensajeBorrado" class="alert alert-success text-center">
+    {{ mensajeBorrado }}
+  </div>
+
   <div class="row gy-3">
     @for (prop of propiedades; track prop.id) {
       <div class="col-12 col-md-6 col-lg-4">
@@ -22,9 +26,7 @@
             <button
               type="button"
               class="btn btn-danger eliminar-btn mt-auto"
-              data-bs-toggle="modal"
-              data-bs-target="#deleteModal"
-              (click)="articuloAEliminar(prop)"
+              (click)="baja(prop)"
             >
               Borrar
             </button>
@@ -35,21 +37,3 @@
   </div>
 </div>
 
-<!-- Modal de Confirmación -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content eliminar-modal">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="deleteModalLabel">Confirmación</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body">
-        <h5>¿Estás seguro de que deseas eliminar esta vivienda?</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="confirmarBaja()">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>

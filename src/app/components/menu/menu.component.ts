@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
   standalone: true,
-  imports: [RouterLink, CommonModule]
+  imports: [RouterLink, CommonModule],
 })
 export class MenuComponent implements AfterViewInit {
   authService = inject(AuthService);
@@ -31,7 +31,8 @@ export class MenuComponent implements AfterViewInit {
     if (!navbar) return;
 
     window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
 
       if (scrollTop > lastScrollTop) {
         this.renderer.addClass(navbar, 'hide-nav'); // Oculta al bajar
@@ -44,10 +45,10 @@ export class MenuComponent implements AfterViewInit {
   }
 
   get isAdmin(): boolean {
-  return this.authService.getUserRole() === 'admin';
-}
+    return this.authService.getUserRole() === 'admin';
+  }
 
-get isUser(): boolean {
-  return this.authService.getUserRole() === 'user';
-}
+  get isUser(): boolean {
+    return this.authService.getUserRole() === 'user';
+  }
 }

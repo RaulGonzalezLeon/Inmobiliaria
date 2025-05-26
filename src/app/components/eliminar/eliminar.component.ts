@@ -13,8 +13,8 @@ import { Propiedades } from '../../models/Propiedades';
 })
 export class EliminarComponent {
   propiedades: any;
-  propiedadborrada: any;
   tiposPropiedad: any[] = [];
+  mensajeBorrado: string = '';
 
   constructor(private propiedadesServicio: PropiedadesService) {
     this.recuperarTodos();
@@ -36,20 +36,13 @@ export class EliminarComponent {
   baja(propiedad: Propiedades) {
     this.propiedadesServicio.baja(propiedad).subscribe((datos: any) => {
       if (datos['resultado'] === 'OK') {
-        alert(datos['mensaje']);
+        this.mensajeBorrado = 'Se ha eliminado correctamente.';
         this.recuperarTodos();
+        setTimeout(() => this.mensajeBorrado = '', 3000); // Oculta el mensaje tras 3s
+      } else {
+        this.mensajeBorrado = 'Error al eliminar la vivienda.';
       }
     });
-  }
-
-  articuloAEliminar(propiedad: any) {
-    this.propiedadborrada = propiedad;
-  }
-
-  confirmarBaja() {
-    if (this.propiedadborrada) {
-      this.baja(this.propiedadborrada);
-    }
   }
 
   obtenerNombreTipo(id: number | string): string {

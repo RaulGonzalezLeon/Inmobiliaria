@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../app/models/Usuarios';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +12,9 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) {}
 
-  recuperarTodos() {
-    return this.http.get(`${this.url}recuperatodos.php`);
-  }
+recuperarTodos(): Observable<Usuario[]> {
+  return this.http.get<Usuario[]>(`${this.url}recuperarTodos.php`);
+}
 
   alta(usuario: Usuario) {
     return this.http.post(`${this.url}alta.php`, JSON.stringify(usuario));
