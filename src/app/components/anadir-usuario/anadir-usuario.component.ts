@@ -24,33 +24,43 @@ export class AnadirUsuarioComponent {
   constructor(private usuariosService: UsuariosService, private router: Router) {}
 
 anadirUsuario(): void {
-  if (this.usuario.correo && this.usuario.rol && this.usuario.contrasena) {
-    // Comprobar si el correo ya está registrado
-    this.usuariosService.seleccionar({ correo: this.usuario.correo, rol: '', contrasena: '' })
-      .subscribe({
-        next: (respuesta: any) => {
-          if (respuesta && Object.keys(respuesta).length > 0) {
-            this.mensaje = 'Ya existe un usuario con ese correo.';
-          } else {
-            // No existe → crearlo
-            this.usuariosService.alta(this.usuario).subscribe({
-              next: () => {
-                this.mensaje = 'Usuario añadido correctamente. Redirigiendo al login...';
-                this.usuario = { correo: '', rol: 'user', contrasena: '' };
-                setTimeout(() => this.router.navigate(['/login']), 1500);
-              },
-              error: () => {
-                this.mensaje = 'Error al añadir el usuario.';
-              }
-            });
-          }
-        },
-        error: () => {
-          this.mensaje = 'Error al comprobar el correo.';
-        }
-      });
-  } else {
+  // Validar campos vacíos
+  if (!this.usuario.correo || !this.usuario.rol || !this.usuario.contrasena) {
     this.mensaje = 'Por favor, completa todos los campos.';
+    return;
   }
+
+  // Validar formato de correo permitido
+  const correoValido = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|outlook\.com)$/.test(this.usuario.correo);
+  if (!correoValido) {
+    this.mensaje = 'Solo se permiten correos de Gmail, Yahoo o Outlook.';
+    return;
+  }
+
+  // Comprobar si el correo ya está registrado
+  this.usuariosService.seleccionar({ correo: this.usuario.correo, rol: '', contrasena: '' })
+    .subscribe({
+      next: (respuesta: any) => {
+        if (respuesta && Object.keys(respuesta).length > 0) {
+          this.mensaje = 'Ya existe un usuario con ese correo.';
+        } else {
+          // No existe → crearlo
+          this.usuariosService.alta(this.usuario).subscribe({
+            next: () => {
+              this.mensaje = 'Usuario añadido correctamente. Redirigiendo al login...';
+              this.usuario = { correo: '', rol: 'user', contrasena: '' };
+              setTimeout(() => this.router.navigate(['/login']), 1500);
+            },
+            error: () => {
+              this.mensaje = 'Error al añadir el usuario.';
+            }
+          });
+        }
+      },
+      error: () => {
+        this.mensaje = 'Error al comprobar el correo.';
+      }
+    });
 }
+
 }

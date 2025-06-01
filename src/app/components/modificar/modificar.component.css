@@ -1,109 +1,114 @@
-/* ============================= */
-/* Estilos para la Tabla         */
-/* ============================= */
-.text-center {
-  text-align: center;         /* Centra el contenido */
-  color: #6B4423;             /* Color de texto en marrón */
-  font-size: 40px;            /* Tamaño de fuente moderado */
-  margin: 0 auto;             /* Centra el bloque en su contenedor */
-  padding: 0.5rem 1rem;       /* Espaciado interno */
-  line-height: 1.4;           /* Altura de línea para mejorar la legibilidad */
-  font-weight: 800;
-}
-
-.table {
-  background-color: #fffaf0; /* Fondo beige clarito */
-  color: #6B4423;            /* Color de texto */
-  border: 1px solid #e6d8c3;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.table th,
-.table td {
-  border: 1px solid #e6d8c3;
-  padding: 10px;
-  text-align: center;
-}
-
-/* Encabezado de la tabla */
-.table thead {
-  background-color: #fffaf0; /* Mismo fondo para un look uniforme */
-  color: #6B4423;
-}
-
-/* Si usas striped: alterna el fondo en las filas */
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #fffaf0;
-}
-
-/* Efecto hover en las filas */
-.table-hover tbody tr:hover {
-  background-color: #f2e6d8;
-}
-
-/* Forzar el estilo en elementos con clase table-dark */
-.table-dark,
-.table-dark th,
-.table-dark td {
-  background-color: #fffaf0 !important;
-  color: #6B4423 !important;
-}
-
-/* ============================= */
-/* Estilos para la Tarjeta       */
-/* ============================= */
-.card {
-  background-color: #fffaf0;  /* Fondo beige clarito */
-  color: #6B4423;             /* Color de texto */
-  border: 1px solid #e6d8c3;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Título de la tarjeta */
-.card-title {
-  color: #6B4423;
-}
-
-/* Etiquetas del formulario dentro de la tarjeta */
-.card .form-label {
-  color: #6B4423;
-}
-
-/* Botón de acción (opcional: ajustar si se desea uniformidad en la paleta) */
-.btn-primary,
-.btn-warning {
-  background-color: #6B4423;
-  border-color: #6B4423;
-  color: #fffaf0;
-  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-primary:hover,
-.btn-warning:hover {
-  background-color: #8a5a3b;
-  border-color: #8a5a3b;
-  transform: translateY(-2px);
-}
-
-.btn-primary:active,
-.btn-warning:active {
-  transform: translateY(0);
-}
-
-/* ============================= */
-/* Ajustes para que no tape el footer */
-/* ============================= */
-
-/* Asegura que body y html ocupen el alto completo */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* Para que el contenido no quede detrás del footer */
 .modificar-container {
-  margin-bottom: 100px; /* Ajusta según el alto de tu footer */
+  margin-bottom: 100px; /* Evita que el contenido quede tapado */
+}
+
+/* Título */
+.modificar-container h1 {
+  text-align: center;
+  color: #6B4423;
+  font-size: 40px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+/* Tarjetas */
+.card {
+  background-color: #fffaf0;
+  color: #6B4423;
+  border: 1px solid #e6d8c3;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(107, 68, 35, 0.2);
+}
+
+.card-title {
+  color: #6B4423;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+  color: #8a5a3b;
+}
+
+.card-text {
+  font-size: 0.95rem;
+}
+
+/* Botón Seleccionar */
+.btn-primary {
+  background-color: #4b7399;
+  border: none;
+  color: #fffaf0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #39597b;
+  transform: translateY(-2px);
+}
+
+/* Botón Modificar */
+.btn-warning {
+  background-color: #e0a800;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-warning:hover {
+  background-color: #c69500;
+  transform: translateY(-2px);
+}
+
+/* Alerta de mensaje de éxito */
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  padding: 1rem;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+/* Alerta de lista vacía */
+.alert-empty {
+  background-color: #dff6fb;
+  color: #045262;
+  border: 1px solid #b6ecf5;
+  padding: 1rem;
+  border-radius: 5px;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-subtitle,
+  .card-text,
+  .list-unstyled li {
+    font-size: 0.9rem;
+  }
+
+  .modificar-container h1 {
+    font-size: 28px;
+  }
 }

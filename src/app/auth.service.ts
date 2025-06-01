@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Usuario } from '../app/models/Usuarios';
 
@@ -14,7 +14,7 @@ export class AuthService {
   public currentUser$: Observable<Usuario | null>;
 
   constructor(private http: HttpClient, private router: Router) {
-    const savedUser = localStorage.getItem(this.STORAGE_KEY);
+    const savedUser = sessionStorage.getItem(this.STORAGE_KEY); // Usamos sessionStorage
     this.currentUserSubject = new BehaviorSubject<Usuario | null>(
       savedUser ? JSON.parse(savedUser) : null
     );
@@ -44,7 +44,7 @@ export class AuthService {
 
   /** Cierra la sesión */
   logout(): void {
-    localStorage.removeItem(this.STORAGE_KEY);
+    sessionStorage.removeItem(this.STORAGE_KEY); // Limpiamos sessionStorage
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }
@@ -60,12 +60,12 @@ export class AuthService {
   }
 
   getUserRole(): string {
-  return this.currentUserSubject.value?.rol ?? '';
-}
+    return this.currentUserSubject.value?.rol ?? '';
+  }
 
-  /** Guarda el usuario en localStorage y actualiza el subject */
+  /** Guarda el usuario en sessionStorage y actualiza el subject */
   private setSession(usuario: Usuario): void {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(usuario));
+    sessionStorage.setItem(this.STORAGE_KEY, JSON.stringify(usuario)); // Guardamos en sessionStorage
     this.currentUserSubject.next(usuario);
   }
 

@@ -5,7 +5,6 @@ import { TipoPropiedadService } from '../../tipo-propiedad.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DetalleViviendaComponent } from '../detalle-vivienda/detalle-vivienda.component';
-import { MenuComponent } from "../menu/menu.component"; // Importa el componente de detalle
 
 @Component({
   selector: 'app-inicio',

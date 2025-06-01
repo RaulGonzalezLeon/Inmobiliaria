@@ -1,0 +1,29 @@
+<h2 class="text-center">Eliminar Formularios de Contactos</h2>
+
+@if (mensaje) {
+  <div class="alert alert-info text-center">{{ mensaje }}</div>
+}
+@if (error) {
+  <div class="alert alert-danger text-center">{{ error }}</div>
+}
+
+@if (contactos.length > 0) {
+  <div class="row">
+    @for (contacto of contactos; track contacto.id) {
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ contacto.nombre }}</h5>
+            <p><strong>Correo:</strong> {{ contacto.correo }}</p>
+            <p><strong>Teléfono:</strong> {{ contacto.telefono }}</p>
+            <p><strong>ID Propiedad:</strong> {{ contacto.propiedad_id }}</p>
+            <p><strong>Asunto:</strong><br>{{ contacto.asunto }}</p>
+            <button class="btn btn-danger mt-3 w-100" (click)="eliminarContacto(contacto)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="alert alert-info text-center">No hay formularios de contactos para eliminar.</div>
+}

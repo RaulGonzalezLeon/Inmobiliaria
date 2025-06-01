@@ -1,0 +1,38 @@
+<h2 class="text-center">Formulario de Contactos Recibidos</h2>
+
+@if (error) {
+  <div class="alert alert-danger">{{ error }}</div>
+}
+
+<!-- Filtro de correos -->
+<div class="mb-3">
+  <label for="correoFiltro" class="form-label">Filtrar por correo:</label>
+  <input
+    id="correoFiltro"
+    type="text"
+    class="form-control"
+    placeholder="Escribe un correo"
+    [(ngModel)]="correoSeleccionado"
+  />
+</div>
+
+<!-- Contactos filtrados -->
+@if (contactosFiltrados.length > 0) {
+  <div class="row">
+    @for (contacto of contactosFiltrados; track contacto.id) {
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ contacto.nombre }}</h5>
+            <p><strong>Correo:</strong> {{ contacto.correo }}</p>
+            <p><strong>Teléfono:</strong> {{ contacto.telefono }}</p>
+            <p><strong>ID Propiedad:</strong> {{ contacto.propiedad_id }}</p>
+            <p><strong>Asunto:</strong><br>{{ contacto.asunto }}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="alert alert-info text-center">No hay formularios de contacto registrados aún.</div>
+}

@@ -1,21 +1,36 @@
-<div class="form-container">
-  <h2>Cambiar Contraseña</h2>
+<div class="container">
+  <h2 class="text-center">Cambiar Contraseña</h2>
 
   <form [formGroup]="form" (ngSubmit)="cambiarContrasena()">
-    <div>
-      <label for="correo">Correo electrónico:</label>
-      <input id="correo" type="email" formControlName="correo" />
+    <div class="mb-3">
+      <label for="correo" class="form-label">Correo electrónico:</label>
+      <input id="correo" type="email" class="form-control" formControlName="correo" />
+      @if (form.get('correo')?.invalid && form.get('correo')?.touched) {
+        <div class="invalid-feedback">
+          Correo inválido.
+        </div>
+      }
     </div>
 
-    <div>
-      <label for="nuevaContrasena">Nueva contraseña:</label>
-      <input id="nuevaContrasena" type="password" formControlName="nuevaContrasena" />
+    <div class="mb-3">
+      <label for="nuevaContrasena" class="form-label">Nueva contraseña:</label>
+      <input id="nuevaContrasena" type="password" class="form-control" formControlName="nuevaContrasena" />
+      @if (form.get('nuevaContrasena')?.invalid && form.get('nuevaContrasena')?.touched) {
+        <div class="invalid-feedback">
+          La contraseña es obligatoria.
+        </div>
+      }
     </div>
 
-    <button type="submit">Cambiar contraseña</button>
+    <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
   </form>
 
-  <p *ngIf="mensaje" style="color: green;">{{ mensaje }}</p>
-  <p *ngIf="error" style="color: red;">{{ error }}</p>
+  @if (mensaje) {
+    <div class="alert alert-success">{{ mensaje }}</div>
+  }
+
+  @if (error) {
+    <div class="alert alert-danger">{{ error }}</div>
+  }
 </div>
 

@@ -15,7 +15,7 @@ import { EmailService } from '../../email.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './anadir-contacto.component.html',
-  styleUrl: './anadir-contacto.component.css'
+  styleUrls: ['./anadir-contacto.component.css']
 })
 export class AnadirContactoComponent implements OnInit {
   contactoForm: FormGroup;

@@ -1,0 +1,107 @@
+/* Estilo para el título principal */
+h2 {
+  color: #6B4423;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+/* Contenedor del filtro */
+.mb-3 {
+  margin: 0 auto 30px auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+/* Estilo para el label del filtro */
+label.form-label {
+  font-weight: bold;
+  color: #6B4423;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Estilo para el selector de correo */
+select.form-select {
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #e6d8c3;
+  background-color: #fffaf0;
+  color: #6B4423;
+  transition: border-color 0.3s ease;
+  font-size: 1em;
+}
+
+select.form-select:focus {
+  border-color: #6B4423;
+  box-shadow: 0 0 5px rgba(107, 68, 35, 0.3);
+  outline: none;
+}
+
+/* Contenedor de tarjetas */
+.row {
+  margin: 0 50px 80px 50px;
+}
+
+/* Tarjeta individual */
+.card {
+  background-color: #fffaf0;
+  border: 1px solid #e6d8c3;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(107, 68, 35, 0.15);
+}
+
+/* Cuerpo de la tarjeta */
+.card-body {
+  padding: 20px;
+  color: #6B4423;
+  font-size: 0.95em;
+}
+
+.card-title {
+  color: #333;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Parrafos dentro de la tarjeta */
+.card-body p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* Alerta de error e info */
+.alert-danger, .alert-info {
+  max-width: 700px;
+  margin: 20px auto;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .row {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .col-md-4 {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .mb-3 {
+    width: 90%;
+  }
+}

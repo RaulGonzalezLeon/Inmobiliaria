@@ -1,51 +1,56 @@
 <!-- Buscador: solo se muestra si no hay propiedad seleccionada -->
-<div class="busqueda-container" *ngIf="!propiedadSeleccionada">
-  <input
-    class="busqueda-input"
-    type="text"
-    placeholder="Buscar por tipo"
-    [(ngModel)]="busquedaNombre"
-  />
-</div>
+@if (!propiedadSeleccionada) {
+  <div class="busqueda-container">
+    <input
+      class="busqueda-input"
+      type="text"
+      placeholder="Buscar por tipo"
+      [(ngModel)]="busquedaNombre"
+    />
+  </div>
+}
 
 <!-- Lista de tarjetas -->
-<div class="card-container" *ngIf="!propiedadSeleccionada">
-  @for (propiedad of propiedadesFiltradas; track propiedad.id) {
-    <div class="card custom-card" (click)="mostrarDetalles(propiedad)">
-      <div class="card-header text-center">
-        <h3 class="card-title">{{ propiedad.titulo }}</h3>
-      </div>
-
-      @if (propiedad.imagen) {
-        <div class="card-image text-center">
-          <img
-            [src]="propiedad.imagen"
-            alt="{{ propiedad.titulo }}"
-            class="img-fluid"
-            style="max-height: 200px; object-fit: cover; border-radius: 8px;"
-          />
+@if (!propiedadSeleccionada) {
+  <div class="card-container">
+    @for (propiedad of propiedadesFiltradas; track propiedad.id) {
+      <div class="card custom-card" (click)="mostrarDetalles(propiedad)">
+        <div class="card-header text-center">
+          <h3 class="card-title">{{ propiedad.titulo }}</h3>
         </div>
-      }
 
-      <div class="card-body">
-        <div class="card-info">
-          <p><strong>ID:</strong> {{ propiedad.id }}</p>
-          <p><strong>Tipo:</strong> {{ getNombreTipoPropiedad(propiedad.tipo_propiedad) }}</p>
-          <p><strong>Descripción:</strong> {{ propiedad.descripcion }}</p>
-          <p><strong>Dirección:</strong> {{ propiedad.direccion }}, {{ propiedad.ciudad }}</p>
-          <p><strong>Precio:</strong> ${{ propiedad.precio | number }}</p>
-          <p><strong>Habitaciones:</strong> {{ propiedad.habitaciones }}</p>
-          <p><strong>Baños:</strong> {{ propiedad.banos }}</p>
-          <p><strong>Superficie:</strong> {{ propiedad.superficie }} m²</p>
+        @if (propiedad.imagen) {
+          <div class="card-image text-center">
+            <img
+              [src]="propiedad.imagen"
+              alt="{{ propiedad.titulo }}"
+              class="img-fluid"
+              style="max-height: 200px; object-fit: cover; border-radius: 8px;"
+            />
+          </div>
+        }
+
+        <div class="card-body">
+          <div class="card-info">
+            <p><strong>ID:</strong> {{ propiedad.id }}</p>
+            <p><strong>Tipo:</strong> {{ getNombreTipoPropiedad(propiedad.tipo_propiedad) }}</p>
+            <p><strong>Descripción:</strong> {{ propiedad.descripcion }}</p>
+            <p><strong>Dirección:</strong> {{ propiedad.direccion }}, {{ propiedad.ciudad }}</p>
+            <p><strong>Precio:</strong> ${{ propiedad.precio | number }}</p>
+            <p><strong>Habitaciones:</strong> {{ propiedad.habitaciones }}</p>
+            <p><strong>Baños:</strong> {{ propiedad.banos }}</p>
+            <p><strong>Superficie:</strong> {{ propiedad.superficie }} m²</p>
+          </div>
         </div>
       </div>
-    </div>
-  }
-</div>
+    }
+  </div>
+}
 
 <!-- Vista Detallada -->
-<app-detalle-vivienda
-  *ngIf="propiedadSeleccionada"
-  [propiedad]="propiedadSeleccionada"
-  (cerrar)="cerrarDetalles()"
-></app-detalle-vivienda>
+@if (propiedadSeleccionada) {
+  <app-detalle-vivienda
+    [propiedad]="propiedadSeleccionada"
+    (cerrar)="cerrarDetalles()"
+  ></app-detalle-vivienda>
+}

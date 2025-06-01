@@ -1,6 +1,13 @@
 <div class="container mt-4 modificar-container">
   <h1 class="text-center mb-4">Administración de Viviendas - Modificar</h1>
 
+  <!-- Mensaje si no hay propiedades -->
+  @if (propiedades?.length === 0) {
+    <div class="alert alert-empty">
+      No hay propiedades para modificar.
+    </div>
+  }
+
   <div class="row gy-3">
     <!-- Lista de propiedades en cards -->
     @for (prop of propiedades; track prop.id) {

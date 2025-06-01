@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Contacto } from '../app/models/Contacto'; // Asegúrate de tener esta interfaz
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +12,9 @@ export class ContactosService {
 
   constructor(private http: HttpClient) {}
 
-  recuperarTodos() {
-    return this.http.get(`${this.url}recuperatodos.php`);
-  }
+recuperarTodos(): Observable<Contacto[]> {
+  return this.http.get<Contacto[]>(`${this.url}recuperartodos.php`);
+}
 
   alta(contacto: Contacto) {
     return this.http.post(`${this.url}alta.php`, JSON.stringify(contacto));

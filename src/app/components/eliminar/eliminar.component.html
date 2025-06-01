@@ -1,9 +1,18 @@
 <div class="container eliminar-container mt-4">
   <h1 class="text-center eliminar-titulo mb-4">Administración de Viviendas - Eliminar</h1>
 
-  <div *ngIf="mensajeBorrado" class="alert alert-success text-center">
-    {{ mensajeBorrado }}
-  </div>
+  @if (mensajeBorrado) {
+    <div class="alert alert-success text-center">
+      {{ mensajeBorrado }}
+    </div>
+  }
+
+  <!-- Mensaje cuando no hay propiedades -->
+  @if (propiedades?.length === 0) {
+    <div class="alert text-center" style="background-color: #dff6fb; color: #045262; border: 1px solid #b6ecf5;">
+      No hay propiedades para eliminar.
+    </div>
+  }
 
   <div class="row gy-3">
     @for (prop of propiedades; track prop.id) {
@@ -36,4 +45,3 @@
     }
   </div>
 </div>
-
