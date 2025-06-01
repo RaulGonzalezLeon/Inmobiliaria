@@ -1,7 +1,7 @@
 export class Usuario {
-  correo: string;      // formato: YYYY-MM-DD
+  correo: string;      
   rol: string;
-  contrasena?: string; // opcional para evitar exponerla al recuperar usuarios
+  contrasena?: string; 
 
   constructor(
     correo: string,

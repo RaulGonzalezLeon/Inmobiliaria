@@ -13,7 +13,7 @@ import { Propiedades } from '../../models/Propiedades';
 })
 export class ModificarComponent {
   propiedades: any;
-  tiposPropiedad: any[] = []; // ✅ Lista de tipos de propiedad
+  tiposPropiedad: any[] = [];
   prop: Propiedades = {
     id: 0,
     titulo: '',
@@ -28,11 +28,12 @@ export class ModificarComponent {
     imagen: ''
   };
 
-  mostrarMensajeExito: boolean = false;  // <-- variable para controlar el mensaje
+  mostrarMensajeExito: boolean = false;
+  mostrarErrorPrecio: boolean = false;
 
   constructor(private propiedadesServicio: PropiedadesService) {
     this.recuperarTodos();
-    this.recuperarTipos(); // ✅ Carga los tipos
+    this.recuperarTipos();
   }
 
   recuperarTodos() {
@@ -49,16 +50,17 @@ export class ModificarComponent {
 
   modificacion() {
     if (this.prop.precio < 50000) {
-      alert('El precio no puede ser menor a 50,000.');
-      return; // No continuar con la modificación
+      this.mostrarErrorPrecio = true;
+      this.mostrarMensajeExito = false;
+      return;
     }
 
     this.propiedadesServicio.modificacion(this.prop).subscribe((datos: any) => {
       if (datos['resultado'] === 'OK') {
         this.mostrarMensajeExito = true;
+        this.mostrarErrorPrecio = false;
         this.recuperarTodos();
 
-        // Oculta el mensaje después de 3 segundos
         setTimeout(() => {
           this.mostrarMensajeExito = false;
         }, 3000);

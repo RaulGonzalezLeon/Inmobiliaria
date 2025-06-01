@@ -39,6 +39,14 @@
         <label for="precioInput" class="form-label">Precio:</label>
         <input id="precioInput" type="number" class="form-control" [(ngModel)]="prop.precio" />
 
+        <!-- Mensaje de error -->
+        @if (mostrarErrorPrecio) {
+          <div class="alert alert-danger mt-2" role="alert">
+            El precio no puede ser menor a 50,000.
+          </div>
+        }
+
+        <!-- Mensaje de éxito -->
         @if (mostrarMensajeExito) {
           <div class="alert alert-success mt-2" role="alert">
             Precio modificado

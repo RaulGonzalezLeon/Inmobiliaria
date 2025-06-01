@@ -17,6 +17,10 @@ export class AnadirTipopropiedadComponent implements OnInit {
   valido: boolean = true;
   tiposExistentes: TipoPropiedad[] = [];
 
+  // Nuevas variables para mensajes separados
+  nombreVacio: boolean = false;
+  nombreDuplicado: boolean = false;
+
   constructor(private tipoServicio: TipoPropiedadService) {}
 
   ngOnInit(): void {
@@ -34,17 +38,19 @@ export class AnadirTipopropiedadComponent implements OnInit {
   }
 
   validar() {
-    this.valido = true;
     const input = document.getElementById('nombre') as HTMLInputElement;
-
     const nombreTrimmed = this.tipo.nombre.trim().toLowerCase();
-    const nombreDuplicado = this.tiposExistentes.some(
+
+    // Separación de errores
+    this.nombreVacio = nombreTrimmed === '';
+    this.nombreDuplicado = this.tiposExistentes.some(
       tipo => tipo.nombre.trim().toLowerCase() === nombreTrimmed
     );
 
-    if (!this.tipo.nombre.trim() || nombreDuplicado) {
+    this.valido = !(this.nombreVacio || this.nombreDuplicado);
+
+    if (!this.valido) {
       input.classList.add('is-invalid');
-      this.valido = false;
     } else {
       input.classList.remove('is-invalid');
     }
@@ -55,9 +61,11 @@ export class AnadirTipopropiedadComponent implements OnInit {
       if (resp.resultado === 'OK') {
         this.mostrarBanner = true;
         this.tipo = new TipoPropiedad(0, '');
+
         this.tipoServicio.recuperarTodos().subscribe((tipos: any) => {
           this.tiposExistentes = tipos.map((t: any) => new TipoPropiedad(t.id, t.nombre));
         });
+
         setTimeout(() => {
           this.mostrarBanner = false;
         }, 3000);
@@ -65,4 +73,3 @@ export class AnadirTipopropiedadComponent implements OnInit {
     });
   }
 }
-

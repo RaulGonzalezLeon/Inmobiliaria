@@ -40,32 +40,32 @@ export class AnadirContactoComponent implements OnInit {
       correo: [{ value: user?.correo || '', disabled: true }, [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       propiedad_id: [null, Validators.required],
-      asunto: ['', Validators.required]
+      asunto: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
 
   ngOnInit(): void {
-  this.propiedadesService.recuperarTodos().subscribe((res: any) => {
-    this.propiedades = res;
-  });
+    this.propiedadesService.recuperarTodos().subscribe((res: any) => {
+      this.propiedades = res;
+    });
 
-  this.route.queryParams.subscribe(params => {
-    const propiedadId = +params['propiedad_id'];
-    if (propiedadId) {
-      const dummyPropiedad = { id: propiedadId } as any;
-      this.propiedadesService.seleccionar(dummyPropiedad).subscribe((res: any) => {
-        const propiedad = Array.isArray(res) ? res[0] : res;
-        if (!propiedad) {
+    this.route.queryParams.subscribe(params => {
+      const propiedadId = +params['propiedad_id'];
+      if (propiedadId) {
+        const dummyPropiedad = { id: propiedadId } as any;
+        this.propiedadesService.seleccionar(dummyPropiedad).subscribe((res: any) => {
+          const propiedad = Array.isArray(res) ? res[0] : res;
+          if (!propiedad) {
+            this.router.navigate(['/inicio']);
+          } else {
+            this.contactoForm.patchValue({ propiedad_id: propiedadId });
+          }
+        }, () => {
           this.router.navigate(['/inicio']);
-        } else {
-          this.contactoForm.patchValue({ propiedad_id: propiedadId });
-        }
-      }, () => {
-        this.router.navigate(['/inicio']);
-      });
-    }
-  });
-}
+        });
+      }
+    });
+  }
 
   getError(campo: string): string | null {
     const control = this.contactoForm.get(campo);
@@ -75,6 +75,7 @@ export class AnadirContactoComponent implements OnInit {
     if (campo === 'nombre' && control.errors['minlength']) return 'El nombre debe tener al menos 2 caracteres.';
     if (campo === 'correo' && control.errors['email']) return 'El formato del correo no es válido.';
     if (campo === 'telefono' && control.errors['pattern']) return 'El teléfono debe tener exactamente 9 dígitos numéricos.';
+    if (campo === 'asunto' && control.errors['minlength']) return 'El asunto debe tener al menos 10 caracteres.';
 
     return 'Campo inválido.';
   }
