@@ -13,7 +13,7 @@ import { DetalleViviendaComponent } from './components/detalle-vivienda/detalle-
 import { NoAdminGuard } from './guards/no-admin.guard';
 import { CambiarContrasenaComponent } from './components/cambiar-contrasena/cambiar-contrasena.component';
 import { VerContactosComponent } from './components/ver-contactos/ver-contactos.component';
-import { EliminarContactoComponent } from './components/eliminar-contacto/eliminar-contacto.component'; // ← NUEVA IMPORTACIÓN
+import { EliminarContactoComponent } from './components/eliminar-contacto/eliminar-contacto.component'; 
 
 export const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -28,7 +28,7 @@ export const routes: Routes = [
   { path: 'anadir-contacto/:id', component: AnadirContactoComponent },
   { path: 'cambiar-contrasena', component: CambiarContrasenaComponent, canActivate: [NoAuthGuard] },
   { path: 'ver-contactos', component: VerContactosComponent, canActivate: [AuthGuard] },
-  { path: 'eliminar-contacto', component: EliminarContactoComponent, canActivate: [AuthGuard] }, // ← NUEVA RUTA
+  { path: 'eliminar-contacto', component: EliminarContactoComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'inicio', pathMatch: 'full' },
 ];
